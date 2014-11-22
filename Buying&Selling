@@ -1,0 +1,119 @@
+import random
+
+#Making many sales and buys possible
+items = ["berry", "fish scale", "pebble"]
+
+class item(object):
+    def __init__(self, name, BuyPrice, SellPrice):
+        self.name = name
+        self.buy = BuyPrice
+        self.sell = SellPrice
+
+    def sale(self):
+        print ("You can sell that " + str(self.name) + " for " + str(self.sell) + ". ")
+        sale1 = str( raw_input("Do you want to? y/n "))
+        if sale1 == 'y':
+            money = money - self.sell
+            inv.append(self.name)
+            print ("You sold a " + str(self.name) + ". Your money is now " + str(money) + ". ")
+        elif sale1 == 'n':
+            print ("Maybe next time then.")
+        else:
+            print ("Melllll! That's not an acceptable answer.")
+
+    def purchase(self):
+        print ("You can purchase a " + str(self.name) + " for " + str(self.buy) + ". ")
+        purchase1 = str( raw_input("Do you want to? y/n "))
+        if purchase1 == 'y':
+            money = money - self.buy
+            inv.append(self.name)
+            print ("You bought a " + str(self.name) + ". Your money is now " + str(money) + ". ")
+        elif purchase1 == 'n':
+            print ("Maybe next time then.")
+        else:
+            print ("Melllll! That's not an acceptable answer.")
+
+berry = item("berry", 3, 5)
+fish = item("fish scale", 10, 23)
+pebble = item("pebble", 2, 3)
+
+money = 25
+inv = []
+
+done = False
+while True:
+    home = str( raw_input("What do you want to do now? buy/sell/cash "))
+    if home == "buy":
+        while home == "buy":
+            buything = random.choice(items)
+            if buything == "berry":
+                price = random.randint(1, 4)
+            elif buything == "fish scale":
+                price = random.randint(7, 14)
+            elif buything == "pebble":
+                price = random.randint(1, 3)
+            else:
+                print ("Mel is a fail. : ( ")
+            firstbuy = str( raw_input("Okay do you want to buy this " + str(buything) + " for " + str(price) + "? y/n "))
+            if firstbuy == 'y':
+                money = money - price
+                inv.append(buything)
+                print ("You bought a " + str(buything) + ".")
+                home = done
+            elif firstbuy == 'n':
+                print ("You'll have to buy later then.")
+                home = done
+            else:
+                print ("Melllll it's not working.")
+    elif home == "sell":
+        while home == "sell":
+            firstsell = str( raw_input("Okay what do you want to sell?" + str(inv)))
+            #Making a sell price for everything
+            if firstsell == "berry":
+                price = random.randint(5, 8)
+                print ("You can sell the berry for " + str(price) + ".")
+                purchase = str( raw_input("Do you want to? y/n "))
+                if purchase == 'y':
+                    money = money + price
+                    inv.remove("berry")
+                    home = done
+                elif purchase == 'n':
+                    print ("Oh, you should choose something else then.")
+                    home = done
+                else:
+                    print ("Oops, that's not quite right.")
+                        
+            elif firstsell == "fishscale":
+                price = random.randint(21, 25)
+                print ("You can sell the fish scale for " + str(price) + ".")
+                purchase = str( raw_input("Do you want to? y/n "))
+                if purchase == 'y':
+                    money = money + price
+                    inv.remove("fish scale")
+                    home = done
+                elif purchase == 'n':
+                    print ("Oh, you should choose something else then.")
+                    home = done
+                else:
+                    print ("Oops, that's not right.")
+            elif firstsell == "pebble":
+                price = random.randint(5, 9)
+                print ("You can sell the pebble for " + str(price) + ".")
+                purchase = str( raw_input("Do you want to? y/n "))
+                if purchase == 'y':
+                    money = money + price
+                    inv.remove("pebble")
+                    home = done
+                elif purchase == 'n':
+                    print ("Oh, you should choose something else then.")
+                    home = done
+                else:
+                    print ("Oops, that's not quite right.")
+            else:
+                print ("Mel can't sell things. : ( ")
+    elif home == "cash":
+        while home == "cash":
+            print ("You have " + str(money) + " money.")
+            home = done
+    else:
+        print ("melllllllllllll")         
