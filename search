@@ -1,0 +1,24 @@
+import random
+
+
+bushItems = ['berry', 'leaf', 'twig', 'berry', 'berry', 'leaf']
+thicketItems = ['leaf', 'pebble', 'grass', 'pebble', 'grass', 'grass', 'grass', 'seed']
+pondItems = ['scale', 'pebble', 'pebble', 'pebble']
+streamItems = ['scale', 'pebble', 'pebble', 'pebble']
+
+class look(object):
+    def __init__(self, place, items):
+        self.place = place
+        self.items = items
+
+    def seek(self):
+        import player as player
+        found = "void"
+        found = random.choice(self.items)
+        print ("You found a " + str(found) + "!")
+        player.player.invAdd(found)
+        
+bush = look("bush", bushItems)
+thicket = look("thicket", thicketItems)
+pond = look("pond", pondItems)
+stream = look("stream", streamItems)
