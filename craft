@@ -1,0 +1,9 @@
+
+
+receipes = {
+    "Grass Bracelet" : {"grass", "grass", "grass"},
+    "Berry Plate" : {"berry", "berry", "berry", "leaf"},
+    "Grass Ring" : {"grass", "grass"},
+    "Pebble Ring" : {"grass", "grass", "pebble"},
+    }
+
