@@ -1,0 +1,124 @@
+import random
+
+def main():
+    runMainMenu()
+
+#Meg's menu system in action
+def runMainMenu():
+    while True:
+        #should add field and barn later
+        options = {
+            1: ("Visit the Forest", "forest"),
+            2: ("Go to the Field", "field"),
+            3: ("Go to the Barn", "barn"),
+            4: ("Open a Vendor Stall", "vendor"),
+            5: ("Visit the Market", "market"),
+            6: ("Go to the Crafting Bench", "craft"),
+            7: ("View Stats", "stats"),
+            8: ("Quit", "quit")
+        }
+        nextAction = displayMenuPrompt(options)
+
+        if nextAction == "forest":
+            runForestMenu()
+
+        elif nextAction == "field":
+            runFieldMenu()
+
+        elif nextAction == "barn":
+            runBarnMenu()
+        
+        elif nextAction == "vendor":
+            runVendorMenu()
+
+        elif nextAction == "market":
+            runMarketMenu()
+
+        elif nextAction == "craft":
+            runCraftMenu()
+
+        elif nextAction == "stats":
+            runStatsDisplay()
+            #print stats from player
+            #stats are exp, money, inv
+
+        elif nextAction == "quit":
+            print ("Goodbye!")
+            exit(0)
+            
+def runForestMenu():
+    while True:
+        print("The forest is an excellent spot to find items!")
+        print("Where do you want to look?")
+        print(" ")
+
+        options = {
+            1: ("In a wild field", "wild"),
+            2: ("Under the Sunny Brook Bridge", "bridge"),
+            3: ("By the Forester's Hut", "hut"),
+            4: ("Around Pea Bog", "bog"),
+            5: ("Go back Home", "home")
+        }
+        nextAction = displayMenuPrompt(options)
+
+        if nextAction == "wild":
+            print ("This takes you no where yet... -_- ")
+            return
+
+        elif nextAction == "bridge":
+            print ("This takes you no where yet... -_- ")
+            return
+
+        elif nextAction == "hut":
+            print ("This takes you no where yet... -_- ")
+            return
+
+        elif nextAction == "bog":
+            print ("This takes you no where yet... -_- ")
+            return
+
+        elif nextAction == "home":
+            print ("You head home")
+            return
+        
+    print ("Nothing Yet")
+
+def runFieldMenu():
+    print ("Nothing Yet")
+
+def runBarnMenu():
+    print ("Nothing Yet")
+
+def runVendorMenu():
+    print ("Nothing Yet")
+
+def runMarketMenu():
+    print ("Nothing Yet")
+
+def runCraftMenu():
+    print ("Nothing Yet")
+
+def runStatsDisplay():
+    print ("Nothing Yet")
+
+#Meg's code... makes the numbered menus work
+def displayMenuPrompt(options):
+    while True:
+        for num, item in options.items():
+            print (str(num) + " - " + item[0])
+
+        choice = raw_input(">")
+
+        if not choice.isdigit():
+            print ("Please pick a number from 1 to %d. \n" % len(options))
+            continue
+
+        choice = int(choice)
+        if choice > 0 and choice <= len(options):
+            (optionDisplayText, optionInternalText) = options[choice]
+            print ("You picked option %d - %s\n" % (choice, optionDisplayText))
+            return optionInternalText
+        else:
+            print("Please pick a number from 1 to %d. \n" % len(options))
+
+main()
