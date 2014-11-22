@@ -1,0 +1,102 @@
+import random
+
+class player(object):
+	def __init__(self, money, experience):
+		self.money = money
+		self.exp = experience
+		
+	def cash(self):
+		print ("You have " + str(self.money) + " money.")
+
+class goods(object):
+	def __init__(self, name, BuyPrice, SellPrice, StarValue):
+		self.name = name
+		self.buy = BuyPrice
+		self.sell = SellPrice
+		self.star = StarValue
+
+	def selling(self):
+		print ("You can sell that " + str(self.name) + " for " + str(self.sell) + ". ")
+		sale1 = str( raw_input("Do you want to? y/n "))
+		if sale1 == 'y':
+			pc.money = pc.money + self.sell
+			inv.append(self.name)
+			print ("You sold a " + str(self.name) + ". Your money is now " + str(pc.money) + ". ")
+		elif sale1 == 'n':
+			print ("Maybe next time then.")
+		else:
+			print ("Melllll! That's not an acceptable answer.")
+
+	def buying(self):
+		print ("You can purchase a " + str(self.name) + " for " + str(self.buy) + ". ")
+		purchase1 = str( raw_input("Do you want to? y/n "))
+		if purchase1 == 'y':
+			pc.money = pc.money - self.buy
+			if pc.money <= 0:
+				print ("Oh sorry you can't buy that, you don't have enough money.")
+				pc.money = pc.money + self.buy
+				return
+			else:
+				inv.append(self.name)
+				print ("You bought a " + str(self.name) + ". Your money is now " + str(pc.money) + ". ")
+		elif purchase1 == 'n':
+			print ("Maybe next time then.")
+		else:
+			print ("Melllll! That's not an acceptable answer.")
+
+#the player
+pc = player(25, 0)
+
+#all the items in the class (goods)
+berry = goods("berry", 3, 5, 0)
+fish = goods("fish scale", 10, 23, 0)
+pebble = goods("pebble", 2, 3, 0)
+
+#the list of items for random.choice purposes, needs to match items from class (goods)
+items = [berry, fish, pebble]
+
+inv = []
+
+#setting up the selling part to show inv
+def stock():
+	for items in inv:
+		print items
+
+#chooses an item to be bought, then starts the buying part
+def buy():
+	return random.choice(items).buying()
+
+#allows selection of item from inv, then starts the selling part
+def sell():
+	print ("You can sell these items: ")
+	stock()
+	
+
+def MainMenu():
+	done = False
+	while True:
+		home = str( raw_input("What do you want to do now? buy/sell/cash/inv "))
+		if home == "buy":
+			while home == "buy":
+				buy()
+				home = done
+		elif home == "sell":
+			while home == "sell":
+				sell()
+				home = done
+		elif home == "cash":
+			while home == "cash":
+				pc.cash()
+				home = done
+		elif home == "inv":
+			while home == "inv":
+				stock()
+				home = done
+		else:
+			print ("Help Mel it's not working!")
+
+MainMenu()
+#inc: there is a function for checking the inv...
+#this all needs to be linked up to the home loop
+#home loop is meant to check inv, cash, buy and sell.
+#make a person who has the money
