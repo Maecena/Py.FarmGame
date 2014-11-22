@@ -1,0 +1,146 @@
+import random
+
+#runs the main menu... makes quitting impossible too
+def main():
+    runMainMenu()
+
+#Meg gave me such a nice menu system... <3
+def runMainMenu():
+    while True:
+        options = {
+            1: ("Visit Forest", "forest"),
+            2: ("Visit Shop", "shop"),
+            3: ("Visit Market", "market"),
+            4: ("Go to Crafting Bench", "bench"),
+            5: ("See Stats", "stats"),
+            6: ("Quit", "quit")
+
+        }
+        nextAction = displayMenuPrompt(options)
+
+        if nextAction == "forest":
+            runForestMenu()
+
+        elif nextAction == "shop":
+            runShopMenu()
+
+        elif nextAction == "market":
+            runMarketMenu()
+
+        elif nextAction == "bench":
+            runBenchMenu()
+
+        elif nextAction == "stats":
+            #don't really like how these print out
+            import player as player
+            player.player.stats()
+
+        elif nextAction == "quit":
+            print ("Good Night!")
+            return
+
+#This is for gathering materials!
+#there aren't many materials yet though
+#all items are stored in *shop, but the search lists are in *search
+def runForestMenu():
+    while True:
+        print ("The forest is an excellent spot to find items.")
+        print ("Where do you want to look?")
+
+        options = {
+            1: ("A berry bush", "bush"),
+            2: ("A grass thicket", "thicket"),
+            3: ("A still pond", "pond"),
+            4: ("A small stream", "stream"),
+            5: ("Go back home", "home")
+
+        }
+        nextAction = displayMenuPrompt(options)
+        
+        import search as search
+        if nextAction == "bush":
+            search.look.seek(search.bush)
+
+        elif nextAction == "thicket":
+            search.look.seek(search.thicket)
+
+        elif nextAction == "pond":
+            search.look.seek(search.pond)
+
+        elif nextAction == "stream":
+            search.look.seek(search.stream)
+
+        elif nextAction == "home":
+            return
+
+#Choose what to sell here
+def runShopMenu():
+    while True:
+        import player as player
+        print ("You can sell your goods from here!")
+        player.invSellable()
+        print ("Pick an item to sell by typing in its name!")
+        import shop as shop
+        sellItem = raw_input(">")
+        #There should be an easier way to do this.... shouldn't there?
+        if sellItem == "berry":
+            shop.item.sale(shop.berry)
+        elif sellItem =="scale":
+            shop.item.sale(shop.scale)
+        elif sellItem =="pebble":
+            shop.item.sale(shop.pebble)
+        elif sellItem =="leaf":
+            shop.item.sale(shop.leaf)
+        elif sellItem =="grass":
+            shop.item.sale(shop.grass)
+        elif sellItem =="twig":
+            shop.item.sale(shop.twig)
+        else:
+            return
+
+#these two call each other in a little loop... there might be a better way to do it buuuuuut it works
+def runMarketMenu():
+    import shop as shop
+    shop.item.purchase(random.choice(shop.items))
+
+def purchaseHome(buyItem, buyPrice):
+    options = {
+            1: ("Buy it!", "buy"),
+            2: ("Look for a different item.", "look"),
+            3: ("Go back home", "home")
+
+    }
+    nextAction = displayMenuPrompt(options)
+
+    if nextAction == "buy":
+        import player as player
+        player.player.buying(buyItem, buyPrice)
+    elif nextAction == "look":
+        runMarketMenu()
+    elif nextAction == "home":
+        return
+
+#crafting!
+def runBenchMenu():
+    print ("Sorry this has no code yet. TT_TT")
+    return
+
+#Meg's code... it makes the numbered menus work.
+def displayMenuPrompt(options):
+    while True:
+        for num, item in options.items():
+            print(str(num) + " - "+item[0])
+
+        choice = raw_input(">")
+
+        if not choice.isdigit():
+            print("Please pick a number from 1 to %d.\n" % len(options))
+            continue
+
+        choice = int(choice)
+        if choice > 0 and choice <= len(options) :
+            (optionDisplayText, optionInternalText) = options[choice]
+            print("You picked option %d - %s\n" % (choice, optionDisplayText))
+            return optionInternalText
+        else:
+            print("Please pick a number from 1 to %d. \n" % len(options))
