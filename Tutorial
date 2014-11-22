@@ -1,0 +1,62 @@
+import random
+
+def purchaseButterKnife(money):
+        #Forcing the first purchase MUST HAVE BUTTERKNIFE!!!!!
+    purchase = 0
+#buying the butterknife... now with money! :D
+    while purchase == 0:
+        buybutterknife = random.randint(2, 10)
+        print ("A butterknife costs " + str(buybutterknife) + ".")
+        purchase1 = str( raw_input("Do you want to buy the butterknife? y/n: ") )
+        if purchase1 == "y":
+                inv.append('butterknife')
+                money = money - buybutterknife
+                purchase = 1
+                print ("You got a butterknife for " + str(buybutterknife) + ". Your money is now " + str(money) + ".")
+        else:
+                print ("Oh no! Here, do you want this one instead?")
+
+def sellButterKnife(money):
+    sale = 0
+    #selling the butterknife
+    while sale == 0:
+        sellbutterknife = random.randint(7, 14)
+        print ("Your butterknife will sell for " + str(sellbutterknife) + ".")
+        sale1 = str( raw_input("Do you want to sell your butterknife? y/n: ") )
+        if sale1 == "y":
+            inv.remove('butterknife')
+            money = money + sellbutterknife
+            sale = 1
+            print("You sold your butterknife for " + str(sellbutterknife) + ". Your money is now " + str(money) + ".")
+        else:
+            print ("Oh dear! What about for this much?")
+
+
+
+#Setting the starting money and making money a thing
+money = 0
+#Making sure there is money
+while money == 0:
+    difficulty = str( raw_input("How difficult should starting be? easy/regular/hard "))
+    if difficulty == "easy":
+        money = 20
+    elif difficulty == "regular":
+        money = 10
+    elif difficulty == "hard":
+        money = 5
+    else:
+        print ("Please try again, that response wasn't quite right")
+
+#making the inventory
+inv = list()
+
+purchaseButterKnife(money)
+sellButterKnife(money)
+
+#This
+#Is 
+#Where
+#The
+#Tutorial
+#Portion
+#Ends
