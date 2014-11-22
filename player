@@ -1,0 +1,66 @@
+
+
+class pc(object):
+    def __init__(self, exp, money, inventory):
+        #exp currently does nothing
+        self.exp = exp
+        self.money = money
+        self.inv = inventory
+
+    def invAdd(self, found):
+        #from gathering and crafting
+        self.inv.append(found)
+        print ("A " + str(found) + " has been added to your inventory.")
+
+    def invRemove(self, used):
+        #from crafting
+        for item in used:
+            self.inv.remove(item)
+
+    def stats(self):
+        print ("You have: "
+               + str(self.money) + " gold "
+               + str(self.exp) + " experience and "
+               + str(self.inv) + " in your inventory."
+               )
+
+    def selling(self, sellPrice, sellItem):
+        if str(sellItem) in self.inv:
+            self.money = self.money + sellPrice
+            self.inv.remove(sellItem)
+            print ("You sold a " + str(sellItem) + " for " + str(sellPrice) + " gold.")
+        elif str(sellItem) not in self.inv:
+            print ("Sorry, it looks like you don't have the item to sell.")
+
+    def buying(self, buyItem, buyPrice):
+        if buyPrice <= self.money:
+            print ("You bought a " + str(buyItem) + " for " + str(buyPrice) + " gold.")
+            self.money = self.money - int(buyPrice)
+            self.inv.append(buyItem)
+            import main as main
+            main.runMarketMenu()
+        elif buyPrice > self.money:
+            print ("Sorry, you don't have enough gold.")
+            import main as main
+            main.runMarketMenu()
+
+
+    def invPrint(self):
+        for item in self.inv:
+            print item
+
+def invSellable():
+    #Checking if the items are sellable...
+    #I wanted to turn the string into the name and directly search
+    #but it wasn't working, this will do for now.
+    for item in player.inv:
+        if item == "berry":
+            import shop as shop
+            shop.item.isSellable(shop.berry)
+        elif item == "scale":
+            import shop as shop
+            shop.item.isSellable(shop.scale)
+            
+
+player = pc(0, 15, ["leaf", "berry", "scale", "twig"])
+
