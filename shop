@@ -1,0 +1,59 @@
+import random
+    
+
+class item(object):
+    def __init__(self, name, baseBuy, baseSell, sellable, star):
+        self.name = name
+        self.buy = baseBuy
+        self.sell = baseSell
+        self.sellable = sellable
+        self.star = star
+
+    def sale(self):
+        if self.sellable == True:
+            print ("You can sell that " + str(self.name) + " for " + str(self.sell) + ". ")
+            sale1 = str( raw_input("Do you want to? y/n "))
+            if sale1 == 'y':
+                import player as player
+                sellPrice = self.sell
+                sellItem = self.name
+                player.player.selling(sellPrice, sellItem)
+            elif sale1 == 'n':
+                print ("Maybe next time then.")
+        elif self.sellable == False:
+            print ("Noboby wants to buy your " + str(self.name) + ". Maybe you should try selling something else.")
+            print (" ")
+            
+    def purchase(self):
+        buyItem = self.name
+        buyPrice = int(self.buy)
+        print ("You can purchase a " + str(buyItem) + " for " + str(buyPrice) + ". ")
+        import main as main
+        main.purchaseHome(buyItem, buyPrice)
+
+    def isSellable(self):
+        if self.sellable == True:
+            print self.name
+
+
+#None of the things worked... i'm giving up on this
+#but still need a way to call the name string :(
+##def itemList(item):
+##    for name in item:
+##        print name
+        
+#raw items    
+berry = item("berry", random.randint(1, 2), random.randint(2, 4), True, 2)
+scale = item("scale", random.randint(7, 14), random.randint(21, 26), True, 2)
+pebble = item("pebble", random.randint(1,3), random.randint(5, 9), False, 2)
+leaf = item("leaf", random.randint(2,5), random.randint(5, 7), False, 2)
+grass = item("grass", random.randint(1,2), random.randint(3, 7), False, 2)
+twig = item("twig", random.randint(1,3), random.randint(5, 9), False, 2)
+
+#crafted items
+##grassBracelet = item()
+##berryPlate = item()
+##grassRing = item()
+##pebbleRing = item()
+
+items = (berry, scale, pebble, leaf, grass, twig)
