@@ -25,23 +25,27 @@ class allGoods(object):
         print self.name
 
     def item_buy_query(self):
-        print ("Do you want to buy a " + str(self.name) + " for " + str(self.buy) + " silver?")
+        print ("Do you want to buy a " + str(self.name) \
+               + " for " + str(self.buy) + " silver?")
 
 
     #prints list of sellable items and sell price, called by items.sell_query
-    def item_sell_query(self):
+    def item_sell_query(self, sellables):
         if self.sellable == True:
-            print (str(self.name) + " - " + str(self.sell))
-            sellables.append(self.name)
+            print("You can sell these items:")
+            print (str(self.name) + " - " + \
+                   str(player.pc.inv_quantity(self.name)))
+            sellables.append(1)
             return sellables
 
     def sale(self):
-        player.add_inv(self.name)
+        player.pc.remove_inv(self.name)
         player.pc.balance_up(self.sell)
-        print ("You sold the " + str(self.name) + " for " + str(self.sell) + ".")
+        print ("You sold the " + str(self.name) + " for " + \
+               str(self.sell) + ".")
 
     def buy(self):
-        player.remove_inv(self.name)
+        player.pc.add_inv(self.name)
         player.pc.balance_down(self.buy)
         
 
@@ -64,15 +68,8 @@ all_items = {
     }
 
 
-buy_items = {
-    "blueberry" : blue_berry,
-    "twig" : twig,
-    "branch" : branch,
-    "bark" : bark,
-    "stone" : stone,
-    "pebbles" : pebbles,
-    "string" : string
-    }
+buy_items = ["blueberry", "twig", "branch", "bark", "stone",
+            "pebbles", "string"]
 
 ##def get_object(thing):
 ##    if thing in all_items:
@@ -82,7 +79,7 @@ buy_items = {
 def selling():
     item_name = raw_input(">")
     if item_name in all_items:
-        if player.check_inv(item_name) == True:
+        if player.pc.check_inv(item_name) == True:
             item_name = all_items[item_name]
             allGoods.sale(item_name)
     else:
@@ -90,23 +87,23 @@ def selling():
             
 def buying():
     item_name = random.choice(buy_items)
-    if item_name in all_items:
-        boo = all_items[key]
-        allGoods.item_buy_query(boo)
-        purchase = raw_input(">")
-        if purchase == "y" or "yes":
-            allGoods.buy(boo)
-        else:
-            return
+    boo = all_items[item_name]
+    allGoods.item_buy_query(boo)
+    purchase = raw_input(">")
+    if purchase == "yes" or purchase == "y":
+        allGoods.buy(boo)
+    else:
+        return False
 
-sellables = []
-
+    
 #loops through all items in pc.inv, prints a list of sellable items
 #called by main.runVendorMenu
+
 def sell_query(comp):
     sellables = []
     for key in comp:
         if key in all_items:
             boo = all_items[key]
-            allGoods.item_sell_query(boo)
+            allGoods.item_sell_query(boo, sellables)
     return sellables
+    
