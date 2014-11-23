@@ -98,12 +98,16 @@ def runVendorMenu():
     while True:
         print("You can sell these items:")
         items.sell_query(player.pc.inv)
+        #this isn't catching an empty inv, why?
         sellables = items.sellables
         if len(sellables) == 0:
             print("Sorry you have nothing to sell, come back later.")
             return False
+        items.sellables = []
         print("What do you want to sell?")
         vendor_sell = items.selling()
+        if vendor_sell == False:
+            return False
 
             
         
@@ -111,8 +115,11 @@ def runVendorMenu():
 def runMarketMenu():
     print ("You can buy many things at the market!")
     while True:
+        
         print ("Let's see what this person is selling!")
-        items.buying()
+        market_buy = items.buying()
+        if market_buy == False:
+            break
 
 def runCraftMenu():
     print ("Nothing Yet")
