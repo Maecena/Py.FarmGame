@@ -1,0 +1,32 @@
+import random
+
+#pasting this everywhere to keep track of all the items
+#items = blueberry , twig , branch , bark , stone , pebbles , string
+#
+
+inv = {
+    "berry" : 1
+    }
+
+class player(object):
+    def __init__(self, exp, money, inventory):
+        self.exp = exp
+        self.money = money
+        self.inv = inventory
+
+    def check_money(self):
+        print ("You have " + str(self.money) + " silver.")
+
+def add_inv(item):
+    for key in inv:
+        if key == item:
+            inv[key] = inv[key] + 1
+        else:
+            inv[item] = 1
+            break
+
+pc = player(0, 15, inv)
+
+
+boo = "berry"
+add_inv(boo)
