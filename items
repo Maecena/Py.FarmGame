@@ -1,0 +1,33 @@
+import random
+
+#items = blueberry , twig , branch , bark , stone , pebbles , string
+x = 0
+
+class AllGoods(object):
+    #Star value will alter buy and sell price later
+    #edible will affect eating food and cooking later
+    def __init__(self, name, sellable, edible, star, buy, sell):
+        self.name = name
+        self.sellable = sellable
+        self.edible = edible
+        self.star = star
+        self.buy = buy
+        self.sell = sell
+
+    def item_name(self):
+        print self.name
+
+    def test(self):
+        item_name(self)
+        print self.buy
+
+blue_berry = AllGoods("blueberry", True, True, x, 2.0, 1.0)
+twig = AllGoods("twig", False, False, x, 1.0, 0)
+branch = AllGoods("branch", False, False, x, 3.0, 0)
+bark = AllGoods("bark", False, False, x, 1.0, 0)
+stone = AllGoods("stone", False, False, x, 2.0, 0)
+pebbles = AllGoods("pebbles", False, False, x, 1.0, 0)
+string = AllGoods("string", False, False, x, 5.0, 0)
+
+
+test(twig)
