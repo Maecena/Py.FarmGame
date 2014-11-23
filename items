@@ -17,9 +17,6 @@ class AllGoods(object):
     def item_name(self):
         print self.name
 
-    def test(self):
-        AllGoods.item_name(self)
-        print self.buy
 
 blue_berry = AllGoods("blueberry", True, True, x, 2.0, 1.0)
 twig = AllGoods("twig", False, False, x, 1.0, 0)
@@ -29,5 +26,24 @@ stone = AllGoods("stone", False, False, x, 2.0, 0)
 pebbles = AllGoods("pebbles", False, False, x, 1.0, 0)
 string = AllGoods("string", False, False, x, 5.0, 0)
 
+all_items = {
+    "blueberry" : blue_berry,
+    "twig" : twig,
+    "branch" : branch,
+    "bark" : bark,
+    "stone" : stone,
+    "pebbles" : pebbles,
+    "string" : string
+    }
 
-AllGoods.test(twig)
+#this didn't work the way i wanted, it wouldn't let me use boo
+#in other functions, fixed for now but not solved
+def get_object(string):
+    for key in all_items:
+        if key == string:
+            boo = all_items[key]
+            
+
+def raw():
+    item_name = raw_input("Give item name:")
+    get_object(item_name)
