@@ -18,7 +18,7 @@ class AllGoods(object):
         print self.name
 
     def test(self):
-        item_name(self)
+        AllGoods.item_name(self)
         print self.buy
 
 blue_berry = AllGoods("blueberry", True, True, x, 2.0, 1.0)
@@ -30,4 +30,4 @@ pebbles = AllGoods("pebbles", False, False, x, 1.0, 0)
 string = AllGoods("string", False, False, x, 5.0, 0)
 
 
-test(twig)
+AllGoods.test(twig)
