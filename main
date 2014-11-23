@@ -1,4 +1,6 @@
 import random
+import search as search
+
 
 def main():
     runMainMenu()
@@ -47,8 +49,8 @@ def runMainMenu():
             exit(0)
             
 def runForestMenu():
+    print("The forest is an excellent spot to find items!")
     while True:
-        print("The forest is an excellent spot to find items!")
         print("Where do you want to look?")
         print(" ")
 
@@ -62,26 +64,21 @@ def runForestMenu():
         nextAction = displayMenuPrompt(options)
 
         if nextAction == "wild":
-            print ("This takes you no where yet... -_- ")
-            return
+            search.gather.find(search.wild)
 
         elif nextAction == "bridge":
-            print ("This takes you no where yet... -_- ")
-            return
+            search.gather.find(search.bridge)
 
         elif nextAction == "hut":
-            print ("This takes you no where yet... -_- ")
-            return
+            search.gather.find(search.hut)
 
         elif nextAction == "bog":
-            print ("This takes you no where yet... -_- ")
-            return
+            search.gather.find(search.bog)
 
         elif nextAction == "home":
             print ("You head home")
             return
         
-    print ("Nothing Yet")
 
 def runFieldMenu():
     print ("Nothing Yet")
