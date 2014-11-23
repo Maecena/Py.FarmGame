@@ -10,7 +10,6 @@ def main():
 #Meg's menu system in action
 def runMainMenu():
     while True:
-        #should add field and barn later
         options = {
             1: ("Visit the Forest", "forest"),
             2: ("Go to the Field", "field"),
@@ -24,27 +23,35 @@ def runMainMenu():
         nextAction = displayMenuPrompt(options)
 
         if nextAction == "forest":
+            #works fine
             runForestMenu()
 
         elif nextAction == "field":
+            #does nothing
             runFieldMenu()
 
         elif nextAction == "barn":
+            #does nothing
             runBarnMenu()
         
         elif nextAction == "vendor":
+            #works
             runVendorMenu()
 
         elif nextAction == "market":
+            #works
             runMarketMenu()
 
         elif nextAction == "craft":
+            #todo
             runCraftMenu()
 
         elif nextAction == "stats":
+            #works fine
             player.pc.player_stats()
 
         elif nextAction == "quit":
+            #haven't tried yet
             print ("Goodbye!")
             exit(0)
 
@@ -96,12 +103,10 @@ def runBarnMenu():
 def runVendorMenu():
     print("You can open a stall to sell goods here.")
     while True:
-        print("You can sell these items:")
-        items.sell_query(player.pc.inv)
-        #this isn't catching an empty inv, why?
-        sellables = items.sellables
+        sellables = items.sell_query(player.pc.inv)
         if len(sellables) == 0:
-            print("Sorry you have nothing to sell, come back later.")
+            print ("Sorry, you have nothing to sell. Come \
+back when you have new items.")
             return False
         items.sellables = []
         print("What do you want to sell?")
@@ -115,11 +120,10 @@ def runVendorMenu():
 def runMarketMenu():
     print ("You can buy many things at the market!")
     while True:
-        
         print ("Let's see what this person is selling!")
         market_buy = items.buying()
         if market_buy == False:
-            break
+            return False
 
 def runCraftMenu():
     print ("Nothing Yet")
@@ -153,3 +157,4 @@ def displayMenuPrompt(options):
 
 
 main()
+
