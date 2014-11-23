@@ -1,5 +1,7 @@
 import random
 import search as search
+import player as player
+import items as items
 
 
 def main():
@@ -40,13 +42,13 @@ def runMainMenu():
             runCraftMenu()
 
         elif nextAction == "stats":
-            runStatsDisplay()
-            #print stats from player
-            #stats are exp, money, inv
+            player.pc.player_stats()
 
         elif nextAction == "quit":
             print ("Goodbye!")
             exit(0)
+
+
             
 def runForestMenu():
     print("The forest is an excellent spot to find items!")
@@ -78,25 +80,48 @@ def runForestMenu():
         elif nextAction == "home":
             print ("You head home")
             return
-        
 
+
+
+
+#doing last
 def runFieldMenu():
     print ("Nothing Yet")
-
+#also doing last
 def runBarnMenu():
     print ("Nothing Yet")
 
-def runVendorMenu():
-    print ("Nothing Yet")
 
+
+def runVendorMenu():
+    print("You can open a stall to sell goods here.")
+    while True:
+        print("You can sell these items:")
+        items.sell_query(player.pc.inv)
+        sellables = items.sellables
+        if len(sellables) == 0:
+            print("Sorry you have nothing to sell, come back later.")
+            return False
+        print("What do you want to sell?")
+        vendor_sell = items.selling()
+
+            
+        
+        
 def runMarketMenu():
-    print ("Nothing Yet")
+    print ("You can buy many things at the market!")
+    while True:
+        print ("Let's see what this person is selling!")
+        items.buying()
 
 def runCraftMenu():
     print ("Nothing Yet")
 
-def runStatsDisplay():
-    print ("Nothing Yet")
+
+
+
+
+
 
 #Meg's code... makes the numbered menus work
 def displayMenuPrompt(options):
@@ -117,5 +142,7 @@ def displayMenuPrompt(options):
             return optionInternalText
         else:
             print("Please pick a number from 1 to %d. \n" % len(options))
+
+
 
 main()
