@@ -5,7 +5,8 @@ import random
 #
 
 inv = {
-    "berry" : 1
+    "blueberry" : 4,
+    "twig" : 2
     }
 
 class player(object):
@@ -14,8 +15,22 @@ class player(object):
         self.money = money
         self.inv = inventory
 
-    def check_money(self):
-        print ("You have " + str(self.money) + " silver.")
+
+    def player_stats(self):
+        print("Your money is at " + str(self.money) + " silver,")
+        print("you have " + str(self.exp) + " experience and")
+        print("your inventory contains: ")
+        print_inv()
+
+    def balance_down(self, total):
+        self.money = self.money - total
+
+    def balance_up(self, total):
+        self.money = self.money + total
+
+def print_inv():
+    for key in inv:
+        print (str(key) + " - " + str(inv[key]))
 
 def add_inv(item):
     if item in inv:
@@ -34,5 +49,10 @@ def remove_inv(item):
     else:
         print ("You can't! You don't have any.")
 
+def check_inv(item):
+    if item in inv:
+        return True
+    else:
+        return False
     
 pc = player(0, 15, inv)
