@@ -5,7 +5,7 @@ import random
 #
 
 inv = {
-    "blueberry" : 4,
+    "blueberry" : 1,
     "twig" : 2
     }
 
@@ -20,39 +20,50 @@ class player(object):
         print("Your money is at " + str(self.money) + " silver,")
         print("you have " + str(self.exp) + " experience and")
         print("your inventory contains: ")
-        print_inv()
+        pc.print_inv()
 
+#the money functions add or subtract money
     def balance_down(self, total):
-        self.money = self.money - total
+        if self.money >= total:
+            self.money = self.money - total
+        else:
+            print ("Sorry you don't have enough money")
+            return False
 
     def balance_up(self, total):
         self.money = self.money + total
 
-def print_inv():
-    for key in inv:
-        print (str(key) + " - " + str(inv[key]))
+#prints the whole inv key and value
+    def print_inv(self):
+        for key in self.inv:
+            print (str(key) + " - " + str(self.inv[key]))
 
-def add_inv(item):
-    if item in inv:
-        inv[item] = inv[item] + 1
-    else:
-        inv[item] = 1
-
-def remove_inv(item):
-    if item in inv:
-        if inv[item] > 0:
-            inv[item] = inv[item] - 1
-            if inv[item] == 0:
-                del inv[item]
+    def add_inv(self, item):
+        if item in self.inv:
+            self.inv[item] = self.inv[item] + 1
         else:
-            print ("You can't! It's listed but something's broken.")
-    else:
-        print ("You can't! You don't have any.")
+            inv[item] = 1
 
-def check_inv(item):
-    if item in inv:
-        return True
-    else:
-        return False
+    def remove_inv(self, item):
+        if item in self.inv:
+            if self.inv[item] > 0:
+                self.inv[item] = self.inv[item] - 1
+                if self.inv[item] == 0:
+                    del self.inv[item]
+            else:
+                print ("You can't! It's listed but something's broken.")
+        else:
+            print ("You can't! You don't have any.")
+
+#prints just one value from the inv
+    def inv_quantity(self, key):
+        if key in self.inv:
+            print self.inv[key]
+
+    def check_inv(self, item):
+        if item in self.inv:
+            return True
+        else:
+            return False
     
 pc = player(0, 15, inv)
