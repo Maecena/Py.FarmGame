@@ -9,7 +9,7 @@ craft = {
     "bark" : {"branch" : 1},
     "string" : {"bark" : 3},
     "pebbles" : {"stone" : 1},
-    "cloth" : {"string" : 3},
+    "cloth" : {"string" : 3, "twig" : 1},
     "dirt" : {"pebbles" : 5}
     }
 
@@ -49,36 +49,39 @@ def create_query():
 def item_check(item):
     #the for loop causes a problem when the recipe requires more than 1 item.
     #will need to look at that later
+    is_possible = False
+    can_make = True
     for i in craft[item]:
-        print i
-        print craft[item][i]
         if i not in player.pc.inv:
-            print ("You don't have any " + str(i))
+            print ("You don't have any " + str(i) + ".")
+            can_make = False
             return
-        print player.pc.inv[i]
         if craft[item][i] <= player.pc.inv[i]:
-            print ("You can make a " + str(item) + \
-                   " with " + str(craft[item]) + " you have " + \
-                   str(player.pc.inv[i]) + ".")
-##            create(item)
+            is_possible = True
         else:
             print ("You have " + str(player.pc.inv[i])+ " " + \
                    str(i) + " but you need " + str(craft[item][i]) + ".")
-            return
+            can_make = False
+    if can_make == True and is_possible == True:
+        create(item)
 
 #item = the thing i want to make
 #i = the thing needed to make item
 #craft[item][i] = how many i is needed to make item
 #player.pc.inv[i] = how many i are in inv
         
-##def create(item):
-##    for i in craft[item]:
-##        count = craft[item][i]
-##        if count > 0:
+def create(item):
+    for i in craft[item]:
+        count = craft[item][i]
+        while count > 0:
+            player.pc.remove_inv(i)
+            count = count - 1
+    player.pc.add_inv(item)
+    print ("You made " + str(item) + ".")
             
     
 
 #for testing out item_check, so far all is good
 ##item_check("twig")
-item_check("cloth")
+##item_check("cloth")
 ##item_check("string")

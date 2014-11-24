@@ -4,10 +4,6 @@ import random
 #shijimi, cloth, dirt
 
 inv = {
-    "blueberry" : 1,
-    "twig" : 2,
-    "branch" : 5,
-    "bark" : 2
     }
 
 class player(object):

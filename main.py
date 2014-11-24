@@ -44,7 +44,7 @@ def runMainMenu():
             runMarketMenu()
 
         elif nextAction == "craft":
-            #todo
+            #should be working :D
             runCraftMenu()
 
         elif nextAction == "stats":
@@ -131,24 +131,24 @@ def runCraftMenu():
     while True:
         options = {
                 1: ("View all recipes", "recipes"),
-                2: ("Craft!", "create"),
-                3: ("Go back Home", "home")
+                2: ("Check inventory", "inventory"),
+                3: ("Craft!", "create"),
+                4: ("Go back Home", "home")
             }
         nextAction = displayMenuPrompt(options)
 
         if nextAction == "recipes":
             craft.print_craft_list(craft.craft)
-
+            
+        elif nextAction == "inventory":
+            player.pc.print_inv()
+            
         elif nextAction == "create":
             craft.create_query()
-            return
 
         elif nextAction == "home":
             print ("You head home")
             return
-
-
-
 
 
 

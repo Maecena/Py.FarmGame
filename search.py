@@ -16,7 +16,7 @@ class gather(object):
     def find(self):
         found = random.choice(self.items)
         print ("You found a " + str(found) + "!")
-        player.add_inv(found)
+        player.pc.add_inv(found)
         return
 
 wild = gather(wild_search)
