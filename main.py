@@ -140,7 +140,7 @@ def runCraftMenu():
             craft.print_craft_list(craft.craft)
 
         elif nextAction == "create":
-            print ("Can't do that yet.")
+            craft.create_query()
             return
 
         elif nextAction == "home":
