@@ -2,6 +2,7 @@ import random
 import search as search
 import player as player
 import items as items
+import craft as craft
 
 
 def main():
@@ -126,7 +127,25 @@ def runMarketMenu():
             return False
 
 def runCraftMenu():
-    print ("Nothing Yet")
+    print ("You can craft many things here!")
+    while True:
+        options = {
+                1: ("View all recipes", "recipes"),
+                2: ("Craft!", "create"),
+                3: ("Go back Home", "home")
+            }
+        nextAction = displayMenuPrompt(options)
+
+        if nextAction == "recipes":
+            craft.print_craft_list(craft.craft)
+
+        elif nextAction == "create":
+            print ("Can't do that yet.")
+            return
+
+        elif nextAction == "home":
+            print ("You head home")
+            return
 
 
 
@@ -157,4 +176,3 @@ def displayMenuPrompt(options):
 
 
 main()
-

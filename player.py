@@ -1,8 +1,7 @@
 import random
 
-#pasting this everywhere to keep track of all the items
 #items = blueberry , twig , branch , bark , stone , pebbles , string
-#
+#shijimi, cloth, dirt
 
 inv = {
     "blueberry" : 1,
@@ -58,7 +57,7 @@ class player(object):
 #prints just one value from the inv
     def inv_quantity(self, key):
         if key in self.inv:
-            print self.inv[key]
+            return self.inv[key]
 
     def check_inv(self, item):
         if item in self.inv:

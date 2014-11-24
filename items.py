@@ -3,10 +3,10 @@ import random
 import player as player
 
 #items = blueberry , twig , branch , bark , stone , pebbles , string
-#
+#shijimi, cloth, dirt
 
 ##when new items are added need to update: items.all_items, items.allGoods(object.list),
-##search.item_gather_lists, the top bars on (market, player, search).
+##search.item_gather_lists, the top bars on (market, player, search, craft).
 
 x = 0
 
@@ -48,15 +48,22 @@ class allGoods(object):
         player.pc.add_inv(self.name)
         player.pc.balance_down(self.buy)
         
-
+##(self, name, sellable, edible, star, buy, sell)        
+#food
 blue_berry = allGoods("blueberry", True, True, x, 2.0, 1.0)
+shijimi = allGoods("shijimi", True, True, x, 3.0, 2.0)
+#base
 twig = allGoods("twig", False, False, x, 1.0, 0)
 branch = allGoods("branch", False, False, x, 3.0, 0)
 bark = allGoods("bark", False, False, x, 1.0, 0)
 stone = allGoods("stone", False, False, x, 2.0, 0)
 pebbles = allGoods("pebbles", False, False, x, 1.0, 0)
+dirt = allGoods("dirt", False, False, x, 1.0, 0)
+#craft
 string = allGoods("string", False, False, x, 5.0, 0)
+cloth = allGoods("cloth", True, False, x, 15.0, 11.0)
 
+#
 all_items = {
     "blueberry" : blue_berry,
     "twig" : twig,
@@ -64,12 +71,15 @@ all_items = {
     "bark" : bark,
     "stone" : stone,
     "pebbles" : pebbles,
-    "string" : string
+    "string" : string,
+    "shijimi" : shijimi,
+    "cloth" : cloth,
+    "dirt" : dirt
     }
 
 
 buy_items = ["blueberry", "twig", "branch", "bark", "stone",
-            "pebbles", "string"]
+            "pebbles", "string", "shijimi", "cloth", "dirt"]
 
 ##def get_object(thing):
 ##    if thing in all_items:
@@ -106,4 +116,3 @@ def sell_query(comp):
             boo = all_items[key]
             allGoods.item_sell_query(boo, sellables)
     return sellables
-    
