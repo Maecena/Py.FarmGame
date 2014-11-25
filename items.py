@@ -1,12 +1,10 @@
 import random
-#calls player to check inv for items, and to add or remove items that are sold
 import player as player
 
-#items = blueberry , twig , branch , bark , stone , pebbles , string
-#shijimi, cloth, dirt
-
-##when new items are added need to update: items.all_items, items.allGoods(object.list),
-##search.item_gather_lists, the top bars on (market, player, search, craft).
+##when new items are added need to update:
+##items.all_items,
+##allGoods(object),
+##search.item_gather_lists,
 
 x = 0
 
@@ -29,7 +27,8 @@ class allGoods(object):
                + " for " + str(self.buy) + " silver?")
 
 
-    #prints list of sellable items and sell price, called by items.sell_query
+    #prints list of sellable items and sell price,
+    #called by items.sell_query
     def item_sell_query(self, sellables):
         if self.sellable == True:
             print("You can sell these items:")
@@ -49,21 +48,28 @@ class allGoods(object):
         player.pc.balance_down(self.buy)
         
 ##(self, name, sellable, edible, star, buy, sell)        
-#food
+#raw food  = allGoods("", True, True, x, 4.0, 2.0)
 blue_berry = allGoods("blueberry", True, True, x, 2.0, 1.0)
-shijimi = allGoods("shijimi", True, True, x, 3.0, 2.0)
-#base
+shijemi = allGoods("shijemi", True, True, x, 3.0, 2.0)
+apple = allGoods("apple", True, True, x, 4.0, 2.0)
+
+#crafted food = allGoods("", True, True, x, 4.0, 2.0)
+fruit_dish = allGoods("fruit_dish", True, True, x, 16.0, 12.0)
+
+#base  = allGoods("", False, False, x, 1.0, 0)
 twig = allGoods("twig", False, False, x, 1.0, 0)
 branch = allGoods("branch", False, False, x, 3.0, 0)
 bark = allGoods("bark", False, False, x, 1.0, 0)
 stone = allGoods("stone", False, False, x, 2.0, 0)
 pebbles = allGoods("pebbles", False, False, x, 1.0, 0)
 dirt = allGoods("dirt", False, False, x, 1.0, 0)
-#craft
+
+#craft = allGoods("", False, False, x, 5.0, 0)
 string = allGoods("string", False, False, x, 5.0, 0)
 cloth = allGoods("cloth", True, False, x, 15.0, 11.0)
+brick = allGoods("brick", True, False, x, 4.0, 2.0)
 
-#
+#every item
 all_items = {
     "blueberry" : blue_berry,
     "twig" : twig,
@@ -72,14 +78,16 @@ all_items = {
     "stone" : stone,
     "pebbles" : pebbles,
     "string" : string,
-    "shijimi" : shijimi,
+    "shijemi" : shijemi,
     "cloth" : cloth,
-    "dirt" : dirt
+    "dirt" : dirt,
+    "brick" : brick,
+    "apple" : apple,
+    "fruit_dish" : fruit_dish
     }
 
-
-buy_items = ["blueberry", "twig", "branch", "bark", "stone",
-            "pebbles", "string", "shijimi", "cloth", "dirt"]
+#just the buy-able items
+buy_items = ["string", "cloth", "fruit_dish"]
 
 ##def get_object(thing):
 ##    if thing in all_items:

@@ -52,7 +52,7 @@ def runMainMenu():
             player.pc.player_stats()
 
         elif nextAction == "quit":
-            #haven't tried yet
+            #works!
             print ("Goodbye!")
             exit(0)
 

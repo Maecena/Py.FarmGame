@@ -1,9 +1,8 @@
 import random
 
-#items = blueberry , twig , branch , bark , stone , pebbles , string
-#shijimi, cloth, dirt
 
 inv = {
+    "bark" : 5
     }
 
 class player(object):

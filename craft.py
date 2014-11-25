@@ -1,8 +1,6 @@
 import random
 import player as player
 
-#items = blueberry , twig , branch , bark , stone , pebbles , string
-#shijimi, cloth, dirt
 
 craft = {
     "twig" : {"branch" : 1},
@@ -10,24 +8,12 @@ craft = {
     "string" : {"bark" : 3},
     "pebbles" : {"stone" : 1},
     "cloth" : {"string" : 3, "twig" : 1},
-    "dirt" : {"pebbles" : 5}
+    "dirt" : {"pebbles" : 5},
+    "brick" : {"rock" : 2},
+    "fruit_dish" : {"blueberry" : 3, "apple" : 1} 
     }
 
 # key : craft[key]:craft[i] 
-
-###from items.py
-##all_items = {
-##    "blueberry" : blue_berry,
-##    "twig" : twig,
-##    "branch" : branch,
-##    "bark" : bark,
-##    "stone" : stone,
-##    "pebbles" : pebbles,
-##    "string" : string,
-##    "shijimi" : shijimi,
-##    "cloth" : cloth,
-##    "dirt" : dirt
-##    }
 
 def print_craft_list(craft):
     for key in craft:
@@ -42,27 +28,21 @@ def create_query():
     item_create = raw_input(">")
     if item_create in craft:
         item_check(item_create)
+    else:
+        print "Sorry that item doesn't exist."
     return
 
 #checks if item can be crafted, compares to player inv
 #runs create
 def item_check(item):
-    #the for loop causes a problem when the recipe requires more than 1 item.
-    #will need to look at that later
-    is_possible = False
     can_make = True
     for i in craft[item]:
-        if i not in player.pc.inv:
-            print ("You don't have any " + str(i) + ".")
-            can_make = False
-            return
-        if craft[item][i] <= player.pc.inv[i]:
-            is_possible = True
-        else:
-            print ("You have " + str(player.pc.inv[i])+ " " + \
+        if (i not in player.pc.inv) or (craft[item][i] > player.pc.inv[i]):
+            you_have = player.pc.inv[i] if i in player.pc.inv else 0
+            print ("You have " + str(you_have)+ " " + \
                    str(i) + " but you need " + str(craft[item][i]) + ".")
             can_make = False
-    if can_make == True and is_possible == True:
+    if can_make == True:
         create(item)
 
 #item = the thing i want to make

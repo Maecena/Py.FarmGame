@@ -1,12 +1,12 @@
 import random
 import player as player
+
 #places = wild , bridge , hut , bog
-#items = blueberry , twig , branch , bark , stone , pebbles , string
 
 wild_search = ['blueberry', 'blueberry', 'pebbles']
-bridge_search = ['stone', 'pebbles', 'pebbles', 'pebbles']
-hut_search = ['twig', 'twig', 'branch', 'bark', 'bark']
-bog_search = ['twig', 'blueberry', 'twig']
+bridge_search = ['stone', 'shijemi', 'pebbles', 'pebbles', 'pebbles']
+hut_search = ['twig', 'twig', 'shijemi', 'branch', 'bark', 'bark']
+bog_search = ['twig', 'blueberry', 'twig', 'dirt']
 
 
 class gather(object):
