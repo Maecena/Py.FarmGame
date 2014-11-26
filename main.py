@@ -104,14 +104,14 @@ def runBarnMenu():
 def runVendorMenu():
     print("You can open a stall to sell goods here.")
     while True:
-        sellables = items.sell_query(player.pc.inv)
+        sellables = buysell.sell_query(player.pc.inv)
         if len(sellables) == 0:
             print ("Sorry, you have nothing to sell. Come \
 back when you have new items.")
             return False
         items.sellables = []
         print("What do you want to sell?")
-        vendor_sell = items.selling()
+        vendor_sell = buysell.selling()
         if vendor_sell == False:
             return False
 

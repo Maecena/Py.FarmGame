@@ -40,7 +40,8 @@ class player(object):
         else:
             inv[item] = 1
 
-    def remove_inv(self, item):
+    def remove_inv(self, item, num=1):
+        
         if item in self.inv:
             if self.inv[item] > 0:
                 self.inv[item] = self.inv[item] - 1
