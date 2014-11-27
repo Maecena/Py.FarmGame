@@ -1,8 +1,9 @@
 import random
-import search as search
-import player as player
-import items as items
-import craft as craft
+import forest
+from player import currentPlayer
+import items
+import craft
+from shop import Shop
 
 
 def main():
@@ -49,7 +50,7 @@ def runMainMenu():
 
         elif nextAction == "stats":
             #works fine
-            player.pc.player_stats()
+            currentPlayer.printStats()
 
         elif nextAction == "quit":
             #works!
@@ -74,57 +75,44 @@ def runForestMenu():
         nextAction = displayMenuPrompt(options)
 
         if nextAction == "wild":
-            search.gather.find(search.wild)
+            item = forest.wild.search()
+            print "You found a %s!" % item.name
+            currentPlayer.inventory.add(item)
 
         elif nextAction == "bridge":
-            search.gather.find(search.bridge)
+            item = forest.bridge.search()
+            print "You found a %s!" % item.name
+            currentPlayer.inventory.add(item)
 
         elif nextAction == "hut":
-            search.gather.find(search.hut)
+            item = forest.hut.search()
+            print "You found a %s!" % item.name
+            currentPlayer.inventory.add(item)
 
         elif nextAction == "bog":
-            search.gather.find(search.bog)
+            item = forest.bog.search()
+            print "You found a %s!" % item.name
+            currentPlayer.inventory.add(item)
 
         elif nextAction == "home":
-            print ("You head home")
+            print ("You head home.")
             return
-
-
-
 
 #doing last
 def runFieldMenu():
     print ("Nothing Yet")
+
 #also doing last
 def runBarnMenu():
     print ("Nothing Yet")
 
-
-
 def runVendorMenu():
     print("You can open a stall to sell goods here.")
-    while True:
-        sellables = buysell.sell_query(player.pc.inv)
-        if len(sellables) == 0:
-            print ("Sorry, you have nothing to sell. Come \
-back when you have new items.")
-            return False
-        items.sellables = []
-        print("What do you want to sell?")
-        vendor_sell = buysell.selling()
-        if vendor_sell == False:
-            return False
+    Shop.sellPrompt(currentPlayer)
 
-            
-        
-        
 def runMarketMenu():
     print ("You can buy many things at the market!")
-    while True:
-        print ("Let's see what this person is selling!")
-        market_buy = items.buying()
-        if market_buy == False:
-            return False
+    Shop.buyPrompt(currentPlayer)
 
 def runCraftMenu():
     print ("You can craft many things here!")
@@ -138,19 +126,26 @@ def runCraftMenu():
         nextAction = displayMenuPrompt(options)
 
         if nextAction == "recipes":
-            craft.print_craft_list(craft.craft)
+            craft.printRecipes()
             
         elif nextAction == "inventory":
-            player.pc.print_inv()
+            currentPlayer.inventory.printPretty()
             
         elif nextAction == "create":
-            craft.create_query()
+            runCraftCreatePrompt()
 
         elif nextAction == "home":
             print ("You head home")
             return
 
-
+def runCraftCreatePrompt():
+    print ("What do you want to craft?")
+    itemToCreate = raw_input(">")
+    if itemToCreate in craft.recipes.keys():
+        craft.recipes[itemToCreate].craft(currentPlayer.inventory)
+    else:
+        print "Sorry that item doesn't exist."
+    return
 
 
 #Meg's code... makes the numbered menus work
