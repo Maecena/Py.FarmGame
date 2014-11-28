@@ -1,66 +1,80 @@
 import random
+from collections import defaultdict
+
+from items import *
 
 
-inv = {
-    "bark" : 5
-    }
 
-class player(object):
-    def __init__(self, exp, money, inventory):
+class Player(object):
+    def __init__(self, exp, money):
         self.exp = exp
         self.money = money
-        self.inv = inventory
+        self.inventory = Inventory()
 
-
-    def player_stats(self):
-        print("Your money is at " + str(self.money) + " silver,")
-        print("you have " + str(self.exp) + " experience and")
+    def printStats(self):
+        print("Your money is at " + str(self.money) + " silver, ")
+        print("you have " + str(self.exp) + " experience and ")
         print("your inventory contains: ")
-        pc.print_inv()
+        self.inventory.printPretty()
 
-#the money functions add or subtract money
-    def balance_down(self, total):
-        if self.money >= total:
-            self.money = self.money - total
-        else:
-            print ("Sorry you don't have enough money")
-            return False
 
-    def balance_up(self, total):
-        self.money = self.money + total
+# A special type of list that stores a player's inventory
+# Only store Items here otherwise bad stuff will happen
+class Inventory(list):
+    def add(self, item):
+        self.append(item)
 
-#prints the whole inv key and value
-    def print_inv(self):
-        for key in self.inv:
-            print (str(key) + " - " + str(self.inv[key]))
+    # def remove(self, item) comes for free :)
 
-    def add_inv(self, item):
-        if item in self.inv:
-            self.inv[item] = self.inv[item] + 1
-        else:
-            inv[item] = 1
+    def removeType(self, itemType, quantity=1):
+        removedQuantity = 0;
+        for item in self:
+            if item.name == itemType.name:
+                self.remove(item)
+                removedQuantity += 1
 
-    def remove_inv(self, item, num=1):
-        
-        if item in self.inv:
-            if self.inv[item] > 0:
-                self.inv[item] = self.inv[item] - 1
-                if self.inv[item] == 0:
-                    del self.inv[item]
-            else:
-                print ("You can't! It's listed but something's broken.")
-        else:
-            print ("You can't! You don't have any.")
+                if removedQuantity == quantity:
+                    break
 
-#prints just one value from the inv
-    def inv_quantity(self, key):
-        if key in self.inv:
-            return self.inv[key]
+        if removedQuantity < quantity:
+            raise RuntimeError("Not enough %s to remove." % (itemType))
 
-    def check_inv(self, item):
-        if item in self.inv:
-            return True
-        else:
-            return False
-    
-pc = player(0, 15, inv)
+    def containsType(self, itemType, quantity=1):
+        foundQuantity = 0;
+        for item in self:
+            if item.name == itemType.name:
+                foundQuantity += 1
+
+                if foundQuantity == quantity:
+                    return True
+        return False
+
+    def findType(self, itemType):
+        for item in self:
+            if item.name == itemType.name:
+                return item
+        return None
+
+    def printSellable(self):
+        printedItems = []
+        for item in self:
+            if item.type.sellable and item not in printedItems:
+                print "%s (%sg)" % (item, item.sellPrice)
+
+        print ""
+
+    def printPretty(self):
+        itemDict = defaultdict(int)
+        for item in self:
+            itemDict[item.name] += 1
+
+        for name, quantity in itemDict.iteritems():
+            print "%s (%s)" % (name, quantity)
+        print ""
+
+
+
+currentPlayer = Player(0, 15)
+for i in range(5):
+    currentPlayer.inventory.add(Item(bark))
+currentPlayer.inventory.add(Item(blueberry, 5)) # top quality blueberry

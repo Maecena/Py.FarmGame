@@ -1,70 +1,61 @@
 import random
 
-##when new items are added need to update:
-##items.all_items,
-##allGoods(object),
-##search.item_gather_lists,
-
-x = 0
-
-class allGoods(object):
-    #Star value will alter buy and sell price later
+class ItemType(object):
     #edible will affect eating food and cooking later
-    def __init__(self, name, sellable, edible, star, buy, sell):
+    def __init__(self, name, sellable, edible, baseBuy, baseSell):
         self.name = name
         self.sellable = sellable
         self.edible = edible
-        self.star = star
-        self.buy = buy
-        self.sell = sell
+        self.baseBuy = baseBuy
+        self.baseSell = baseSell
 
-        
-#is this used anywhere?
-    def item_name(self):
-        print self.name
+    def __str__(self):
+        return self.name
 
-#required for new buysell page
-    def get_price(self):
-        return (self.price)
+class Item(object):
+    #Star value will alter buy and sell price later
+    def __init__(self, itemType, star=None):
+        self.type = itemType
 
-#should work
-    def item_buy_query(self):
-        print ("Do you want to buy a " + str(self.name) \
-               + " for " + str(self.buy) + " silver?")
-        price = self.buy
-        return (price)
+        if star:
+            self.star = star
+        else:
+            self.star = random.randint(1,5)
 
-    #prints list of sellable items and sell price,
-    #called by items.sell_query
+    @property
+    def buyPrice(self):
+        return self.type.baseBuy * self.star
 
-    #fix this
-    def item_sell_query(self, sellables):
-        if self.sellable == True:
-            print("You can sell these items:")
-            print (str(self.name) + " - " + \
-                   str(player.pc.inv_quantity(self.name)))
-            sellables.append(1)
-            return sellables
+    @property
+    def sellPrice(self):
+        return self.type.baseSell * self.star
 
-        
-##(self, name, sellable, edible, star, buy, sell)        
-#raw food  = allGoods("", True, True, x, 4.0, 2.0)
-blue_berry = allGoods("blueberry", True, True, x, 2.0, 1.0)
-shijemi = allGoods("shijemi", True, True, x, 3.0, 2.0)
-apple = allGoods("apple", True, True, x, 4.0, 2.0)
+    @property
+    def name(self):
+        return self.type.name
 
-#crafted food = allGoods("", True, True, x, 4.0, 2.0)
-fruit_dish = allGoods("fruit_dish", True, True, x, 16.0, 12.0)
+    def __str__(self):
+        return self.name
 
-#base  = allGoods("", False, False, x, 1.0, 0)
-twig = allGoods("twig", False, False, x, 1.0, 0)
-branch = allGoods("branch", False, False, x, 3.0, 0)
-bark = allGoods("bark", False, False, x, 1.0, 0)
-stone = allGoods("stone", False, False, x, 2.0, 0)
-pebbles = allGoods("pebbles", False, False, x, 1.0, 0)
-dirt = allGoods("dirt", False, False, x, 1.0, 0)
 
-#craft = allGoods("", False, False, x, 5.0, 0)
-string = allGoods("string", False, False, x, 5.0, 0)
-cloth = allGoods("cloth", True, False, x, 15.0, 11.0)
-brick = allGoods("brick", True, False, x, 4.0, 2.0)
+# (self, name, sellable, edible, buy, sell)
+#raw food  = ItemType("", True, True, 4, 2)
+blueberry = ItemType("blueberry", True, True, 2, 1)
+shijemi = ItemType("shijemi", True, True, 3, 2)
+apple = ItemType("apple", True, True, 4, 2)
+
+#crafted food = ItemType("", True, True, 4, 2)
+fruit_dish = ItemType("fruit_dish", True, True, 16, 12)
+
+#base  = ItemType("", False, False, 1, 0)
+twig = ItemType("twig", False, False, 1, 0)
+branch = ItemType("branch", False, False, 3, 0)
+bark = ItemType("bark", False, False, 1, 0)
+stone = ItemType("stone", False, False, 2, 0)
+pebbles = ItemType("pebbles", False, False, 1, 0)
+dirt = ItemType("dirt", False, False, 1, 0)
+
+#craft = ItemType("", False, False, 5, 0)
+string = ItemType("string", False, False, 5, 0)
+cloth = ItemType("cloth", True, False, 15, 11)
+brick = ItemType("brick", True, False, 4, 2)
