@@ -57,9 +57,9 @@ class Inventory(list):
 
     def printSellable(self):
         printedItems = []
-        for item in self:
-            if item.type.sellable and item not in printedItems:
-                print "%s (%sg)" % (item, item.sellPrice)
+        for it in self:
+            if it.sellable() == True and it not in printedItems:
+                print "%s (%sg)" % (it, it.sellPrice)
 
         print ""
 

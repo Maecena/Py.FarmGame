@@ -8,17 +8,25 @@ buyItemTypes = [string, cloth, fruit_dish]
 #every item
 allItemTypes = {
     "blueberry" : blueberry,
-    "twig" : twig,
+    "strawberry" : strawberry,
+    "apple" : apple,
+    "shijemi" : shijemi,
+    "onion" : onion,
+    "ginger" : ginger,
+    "mint" : mint,
     "branch" : branch,
+    "twig" : twig,
     "bark" : bark,
     "stone" : stone,
     "pebbles" : pebbles,
+    "sand" : sand,
+    "vine" : vine,
     "string" : string,
-    "shijemi" : shijemi,
     "cloth" : cloth,
     "dirt" : dirt,
     "brick" : brick,
-    "apple" : apple,
+    "pole" : pole,
+    "glass" : glass,
     "fruit_dish" : fruit_dish
 }
 

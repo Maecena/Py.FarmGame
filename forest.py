@@ -7,9 +7,18 @@ class ForestLocation(object):
         self.items = items
 
     def search(self):
+        #maybe it would be better to change this to a % based thing
+        #rather than having a big list of possible items
         return random.choice(self.items)
 
-wild = ForestLocation([blueberry, blueberry, pebbles])
-bridge = ForestLocation([stone, shijemi, pebbles, pebbles, pebbles])
-hut = ForestLocation([twig, twig, shijemi, branch, bark, bark])
+wild = ForestLocation([blueberry, blueberry, apple, \
+                       apple, vine, onion, ginger, strawberry, strawberry, mint])
+bridge = ForestLocation([stone, shijemi, pebbles, \
+                         pebbles, pebbles, vine, vine])
+hut = ForestLocation([twig, twig, shijemi, branch, \
+                      branch, branch, branch, bark, bark])
 bog =  ForestLocation([twig, blueberry, twig, dirt])
+mine = ForestLocation([sand, sand, sand, pebbles, \
+                       pebbles, dirt, stone, stone, stone])
+
+

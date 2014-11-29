@@ -70,7 +70,8 @@ def runForestMenu():
             2: ("Under the Sunny Brook Bridge", "bridge"),
             3: ("By the Forester's Hut", "hut"),
             4: ("Around Pea Bog", "bog"),
-            5: ("Go back Home", "home")
+            5: ("By the old mine", "mine"),
+            6: ("Go back Home", "home")
         }
         nextAction = displayMenuPrompt(options)
 
@@ -91,6 +92,11 @@ def runForestMenu():
 
         elif nextAction == "bog":
             item = forest.bog.search()
+            print "You found a %s!" % item.name
+            currentPlayer.inventory.add(item)
+
+        elif nextAction == "mine":
+            item = forest.mine.search()
             print "You found a %s!" % item.name
             currentPlayer.inventory.add(item)
 

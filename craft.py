@@ -24,8 +24,8 @@ class Recipe(object):
 
 
 recipes = {
-    "twig": Recipe(branch, {branch: 1}),
-    "bark": Recipe(branch, {branch: 1}),
+    "twig": Recipe(twig, {branch: 1}),
+    "bark": Recipe(bark, {branch: 1}),
     "string": Recipe(string, {bark: 3}),
     "pebbles": Recipe(pebbles, {stone: 1}),
     "cloth": Recipe(cloth, {string: 1, twig: 1}),
@@ -37,7 +37,7 @@ recipes = {
 def printRecipes():
     global recipes
     for recipe in recipes.values():
-        print "%s can be made with:" % (recipe.product)
+        print "A %s can be made with:" % (recipe.product)
         for component, quantity in recipe.components.iteritems():
-            print "%s (%s)" % (component.name, quantity)
+            print "(%s) %s" % (quantity, component.name)
         print ""
