@@ -39,20 +39,20 @@ class Shop(object):
     def buyPrompt(player):
         global buyItemTypes
         itemForSale = Item(random.choice(buyItemTypes))
-        print "Here's a cool item to buy: the %s!! Only %s gold!!!" % (itemForSale, itemForSale.buyPrice)
+        print "Here's a cool item to buy: the %s!! Only %s g!!!" % (itemForSale, itemForSale.buyPrice)
         purchase = raw_input(">")
 
         if not purchase in ["yes", "y"]:
             return False
 
         if player.money < itemForSale.buyPrice:
-            print "You can't afford that. It costs %s gold and you only have %s." % (itemForSale.buyPrice, player.money)
+            print "You can't afford that. It costs %s g and you only have %s." % (itemForSale.buyPrice, player.money)
             return
 
         player.money -= itemForSale.buyPrice
         player.inventory.add(itemForSale)
         clock.gameTime.addCount(1)
-        print "You bought a shiny new %s for %s gold." % (itemForSale, itemForSale.buyPrice)
+        print "You bought a shiny new %s for %s g." % (itemForSale, itemForSale.buyPrice)
         
 
 
@@ -79,4 +79,4 @@ class Shop(object):
         player.inventory.remove(itemToSell)
         player.money += itemToSell.sellPrice
         clock.gameTime.addCount(1)
-        print "You sold your %s for %s gold." % (itemToSell, itemToSell.sellPrice)
+        print "You sold your %s for %s g." % (itemToSell, itemToSell.sellPrice)

@@ -82,30 +82,35 @@ def runForestMenu():
             print "You found a %s!" % item.name
             currentPlayer.inventory.add(item)
             clock.gameTime.addCount(1)
+            currentPlayer.expGain(1)
 
         elif nextAction == "bridge":
             item = forest.bridge.search()
             print "You found a %s!" % item.name
             currentPlayer.inventory.add(item)
             clock.gameTime.addCount(1)
+            currentPlayer.expGain(1)
 
         elif nextAction == "hut":
             item = forest.hut.search()
             print "You found a %s!" % item.name
             currentPlayer.inventory.add(item)
             clock.gameTime.addCount(1)
+            currentPlayer.expGain(1)
 
         elif nextAction == "bog":
             item = forest.bog.search()
             print "You found a %s!" % item.name
             currentPlayer.inventory.add(item)
             clock.gameTime.addCount(1)
+            currentPlayer.expGain(1)
 
         elif nextAction == "mine":
             item = forest.mine.search()
             print "You found a %s!" % item.name
             currentPlayer.inventory.add(item)
             clock.gameTime.addCount(1)
+            currentPlayer.expGain(1)
 
         elif nextAction == "home":
             print ("You head home.")
@@ -156,7 +161,6 @@ def runCraftCreatePrompt():
     itemToCreate = raw_input(">")
     if itemToCreate in craft.recipes.keys():
         craft.recipes[itemToCreate].craft(currentPlayer.inventory)
-        clock.gameTime.addCount(1)
     else:
         print "Sorry that item doesn't exist."
     return

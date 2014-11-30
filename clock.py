@@ -27,8 +27,8 @@ class Time(object):
 
     def checkClock(self):
         print "It is %s %s in Year %s. You have %s actions left." \
-              % (str(gameTime.seasonFriendly()), str(self.day), str(self.year), \
-                 str(self.actions - self.count))
+              % (str(gameTime.seasonFriendly()), str(self.day), \
+                 str(self.year), str(self.actions - self.count))
 
     #updates the count of actions and
     #checks to see if the day should be advanced
@@ -72,4 +72,4 @@ class Time(object):
         elif self.season == Season.WINTER:
             return "Winter"
 
-gameTime = Time(15, 3, 1, Season.SPRING, 1)
+gameTime = Time(15, 0, 1, Season.SPRING, 1)

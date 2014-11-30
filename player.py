@@ -8,15 +8,24 @@ from items import *
 class Player(object):
     def __init__(self, exp, money):
         self.exp = exp
+        self.lvl = 1
         self.money = money
         self.inventory = Inventory()
 
     def printStats(self):
-        print("Your money is at " + str(self.money) + " silver, ")
-        print("you have " + str(self.exp) + " experience and ")
+        print("Your money is at " + str(self.money) + " g, ")
+        print("you are at level " + str(self.lvl) + \
+              " with " + str(self.exp) + " experience and ")
         print("your inventory contains: ")
         self.inventory.printPretty()
 
+    def expGain(self, num=1):
+        self.exp += num
+        lvlup = 100 * ((int(self.lvl) * 0.1)+ 1 - 0.1)
+        if self.exp >= lvlup:
+            self.lvl += 1
+            self.exp = 0
+        
 
 # A special type of list that stores a player's inventory
 # Only store Items here otherwise bad stuff will happen
@@ -55,12 +64,11 @@ class Inventory(list):
                 return item
         return None
     
-#item.sellCheck() == True and 
     def printSellable(self):
         printedItems = []
         for item in self:
             if item not in printedItems and item.sellable == True:
-                print "%s (%sg)" % (item, item.sellPrice)
+                print "%s (%s g)" % (str(item), str(item.sellPrice()))
 
         print ""
 

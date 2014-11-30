@@ -1,6 +1,7 @@
 import random
 from player import currentPlayer
 from items import *
+import clock as clock
 
 class Recipe(object):
     def __init__(self, product, components):
@@ -20,6 +21,8 @@ class Recipe(object):
 
         craftedItem = Item(self.product, random.randint(3,5)) # stuff we make is high quality!!!
         inventory.add(craftedItem)
+        clock.gameTime.addCount(1)
+        currentPlayer.expGain(4)
         print "You made a beautiful %s-star %s." % (craftedItem.star, craftedItem)
 
 
