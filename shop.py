@@ -2,6 +2,7 @@ import random
 
 from player import currentPlayer
 from items import *
+import clock as clock
 
 buyItemTypes = [string, cloth, fruit_dish]
 
@@ -50,7 +51,9 @@ class Shop(object):
 
         player.money -= itemForSale.buyPrice
         player.inventory.add(itemForSale)
+        clock.gameTime.addCount(1)
         print "You bought a shiny new %s for %s gold." % (itemForSale, itemForSale.buyPrice)
+        
 
 
     @staticmethod 
@@ -75,4 +78,5 @@ class Shop(object):
         itemToSell = player.inventory.findType(itemType)
         player.inventory.remove(itemToSell)
         player.money += itemToSell.sellPrice
+        clock.gameTime.addCount(1)
         print "You sold your %s for %s gold." % (itemToSell, itemToSell.sellPrice)

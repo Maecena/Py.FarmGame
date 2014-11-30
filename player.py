@@ -54,12 +54,13 @@ class Inventory(list):
             if item.name == itemType.name:
                 return item
         return None
-
+    
+#item.sellCheck() == True and 
     def printSellable(self):
         printedItems = []
-        for it in self:
-            if it.sellable() == True and it not in printedItems:
-                print "%s (%sg)" % (it, it.sellPrice)
+        for item in self:
+            if item not in printedItems and item.sellable == True:
+                print "%s (%sg)" % (item, item.sellPrice)
 
         print ""
 

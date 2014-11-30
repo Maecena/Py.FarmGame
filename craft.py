@@ -32,6 +32,7 @@ recipes = {
     "dirt": Recipe(dirt, {pebbles: 5}),
     "brick": Recipe(brick, {stone: 2}),
     "fruit_dish": Recipe(fruit_dish, {blueberry: 3, apple: 1}),
+    "glass": Recipe(glass, {sand : 3}),
 }
 
 def printRecipes():

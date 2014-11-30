@@ -12,6 +12,12 @@ class ItemType(object):
     def __str__(self):
         return self.name
 
+    def sellCheck(self):
+        if self.sellable == True:
+            return True
+        else:
+            return False
+
     
 
 class Item(object):
@@ -39,8 +45,10 @@ class Item(object):
     def __str__(self):
         return self.name
 
+    @property
     def sellable(self):
         return self.type.sellable
+
 
 
 #later: if there isn't a way to use it it should be sellable
