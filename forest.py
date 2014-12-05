@@ -7,6 +7,8 @@ class ForestLocation(object):
         self.items = items
 
     def search(self):
+        #maybe it would be better to change this to a % based thing
+        #rather than having a big list of possible items
         return random.choice(self.items)
 
 wild = ForestLocation([blueberry, blueberry, apple, \

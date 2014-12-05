@@ -4,7 +4,7 @@ from player import currentPlayer
 import items
 import craft
 from shop import Shop
-from clock import gameTime
+import clock as clock
 
 
 def main():
@@ -26,6 +26,7 @@ def runMainMenu():
         nextAction = displayMenuPrompt(options)
 
         if nextAction == "forest":
+            #works fine
             runForestMenu()
 
         elif nextAction == "field":
@@ -37,19 +38,24 @@ def runMainMenu():
             runBarnMenu()
         
         elif nextAction == "vendor":
+            #works
             runVendorMenu()
 
         elif nextAction == "market":
+            #works
             runMarketMenu()
 
         elif nextAction == "craft":
+            #should be working :D
             runCraftMenu()
 
         elif nextAction == "stats":
-            gameTime.checkClock()
+            #works fine
+            clock.gameTime.checkClock()
             currentPlayer.printStats()
 
         elif nextAction == "quit":
+            #works!
             print ("Goodbye!")
             exit(0)
 
@@ -75,35 +81,35 @@ def runForestMenu():
             item = forest.wild.search()
             print "You found a %s!" % item.name
             currentPlayer.inventory.add(item)
-            gameTime.addCount(1)
+            clock.gameTime.addCount(1)
             currentPlayer.expGain(1)
 
         elif nextAction == "bridge":
             item = forest.bridge.search()
             print "You found a %s!" % item.name
             currentPlayer.inventory.add(item)
-            gameTime.addCount(1)
+            clock.gameTime.addCount(1)
             currentPlayer.expGain(1)
 
         elif nextAction == "hut":
             item = forest.hut.search()
             print "You found a %s!" % item.name
             currentPlayer.inventory.add(item)
-            gameTime.addCount(1)
+            clock.gameTime.addCount(1)
             currentPlayer.expGain(1)
 
         elif nextAction == "bog":
             item = forest.bog.search()
             print "You found a %s!" % item.name
             currentPlayer.inventory.add(item)
-            gameTime.addCount(1)
+            clock.gameTime.addCount(1)
             currentPlayer.expGain(1)
 
         elif nextAction == "mine":
             item = forest.mine.search()
             print "You found a %s!" % item.name
             currentPlayer.inventory.add(item)
-            gameTime.addCount(1)
+            clock.gameTime.addCount(1)
             currentPlayer.expGain(1)
 
         elif nextAction == "home":
