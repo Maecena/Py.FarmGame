@@ -15,10 +15,14 @@ class Season:
     FALL = 3
     WINTER = 4
 
+# will be used to track crop growth
+day_count = 0
 
 ##@Singleton
 class Time(object):
     def __init__(self, actions, count, day, season, year):
+        #actions = how many actions are possible
+        #count = how many actions have been done today
         self.actions = actions
         self.count = count
         self.day = day
@@ -45,6 +49,7 @@ class Time(object):
     #moves time forward! ^_^
     def advanceDay(self):
         self.count = 0
+        day_count += 1
         if self.day < 30:
             self.day += 1
         elif self.season < Season.WINTER:

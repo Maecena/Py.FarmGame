@@ -2,7 +2,7 @@ import random
 from collections import defaultdict
 
 from items import *
-
+from clock import gameTime
 
 
 class Player(object):
@@ -23,6 +23,7 @@ class Player(object):
         self.exp += num
         lvlup = 100 * ((int(self.lvl) * 0.1)+ 1 - 0.1)
         if self.exp >= lvlup:
+            gameTime.addActions(1)
             self.lvl += 1
             self.exp = 0
         
@@ -41,7 +42,6 @@ class Inventory(list):
             if item.name == itemType.name:
                 self.remove(item)
                 removedQuantity += 1
-
                 if removedQuantity == quantity:
                     break
 
@@ -63,12 +63,11 @@ class Inventory(list):
             if item.name == itemType.name:
                 return item
         return None
-    
+
     def printSellable(self):
-        printedItems = []
         for item in self:
-            if item not in printedItems and item.sellable == True:
-                print "%s (%s g)" % (str(item), str(item.sellPrice()))
+            if item.sellable == True:
+                print ("%s (%s g)" % (str(item), str(item.sellPrice)))
 
         print ""
 
