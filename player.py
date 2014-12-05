@@ -2,15 +2,18 @@ import random
 from collections import defaultdict
 
 from items import *
+from clock import gameTime
 
 
 
 class Player(object):
-    def __init__(self, exp, money):
+    def __init__(self, exp, money, actions, action_count):
         self.exp = exp
-        self.lvl = 1
+        self.lvl = 0
         self.money = money
         self.inventory = Inventory()
+        self.actions = actions
+        self.action_count = action_count
 
     def printStats(self):
         print("Your money is at " + str(self.money) + " g, ")
@@ -21,11 +24,24 @@ class Player(object):
 
     def expGain(self, num=1):
         self.exp += num
-        lvlup = 100 * ((int(self.lvl) * 0.1)+ 1 - 0.1)
+        lvlup = 100
         if self.exp >= lvlup:
             self.lvl += 1
-            self.exp = 0
+            self.exp -= lvlup
+            lvlup = lvlup * 1.1
+            if (self.lvl % 2 == 0):
+                addActions(1)
         
+    #updates the count of actions and
+    #checks to see if the day should be advanced
+    def addCount(self, num):
+        self.count += num
+        if self.count >= self.actions:
+            gameTime.advanceDay()
+            
+    #for lvling up, maybe also special foods?
+    def addActions(self, num):
+        self.actions += num
 
 # A special type of list that stores a player's inventory
 # Only store Items here otherwise bad stuff will happen

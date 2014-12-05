@@ -5,8 +5,6 @@
 
 #going to use a regular class instead
 
-#want to have day as a count of actions
-#lvling up would increase action count
 
 
 class Season:
@@ -18,29 +16,16 @@ class Season:
 
 ##@Singleton
 class Time(object):
-    def __init__(self, actions, count, day, season, year):
-        self.actions = actions
-        self.count = count
+    def __init__(self, day, season, year):
         self.day = day
         self.season = season
         self.year = year
 
     def checkClock(self):
-        print "It is %s %s in Year %s. You have %s actions left." \
+        print "It is %s %s in Year %s." \
               % (str(gameTime.seasonFriendly()), str(self.day), \
-                 str(self.year), str(self.actions - self.count))
+                 str(self.year))
 
-    #updates the count of actions and
-    #checks to see if the day should be advanced
-    def addCount(self, num):
-        self.count += num
-        if self.count >= self.actions:
-            gameTime.advanceDay()
-
-
-    #for lvling up, maybe also special foods?
-    def addActions(self, num):
-        self.actions += num
 
     #moves time forward! ^_^
     def advanceDay(self):
