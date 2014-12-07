@@ -33,4 +33,3 @@ class Field(object):
         
 fieldOne = Field()
 
-onionSeed = "baby onion"

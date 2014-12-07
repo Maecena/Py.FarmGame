@@ -7,20 +7,16 @@ from clock import gameTime
 
 
 class Player(object):
-    def __init__(self, exp, money, actions, action_count):
+    def __init__(self, exp, money, actions, actionCount):
         self.exp = exp
         self.lvl = 0
         self.money = money
         self.inventory = Inventory()
         self.actions = actions
-        self.action_count = action_count
+        self.actionCount = actionCount
 
     def printStats(self):
-        print("Your money is at " + str(self.money) + " g, ")
-        print("you are at level " + str(self.lvl) + \
-              " with " + str(self.exp) + " experience and ")
-        print("your inventory contains: ")
-        self.inventory.printPretty()
+        return str(self.money), str(self.lvl), str(self.exp)
 
     def expGain(self, num=1):
         self.exp += num
@@ -35,8 +31,8 @@ class Player(object):
     #updates the count of actions and
     #checks to see if the day should be advanced
     def addCount(self, num):
-        self.count += num
-        if self.count >= self.actions:
+        self.actionCount += num
+        if self.actionCount >= self.actions:
             gameTime.advanceDay()
             
     #for lvling up, maybe also special foods?
@@ -99,7 +95,7 @@ class Inventory(list):
 
 
 
-currentPlayer = Player(0, 15)
+currentPlayer = Player(0, 15, 10, 0)
 for i in range(5):
     currentPlayer.inventory.add(Item(bark))
 currentPlayer.inventory.add(Item(blueberry, 5)) # top quality blueberry

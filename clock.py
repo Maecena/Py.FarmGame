@@ -22,9 +22,7 @@ class Time(object):
         self.year = year
 
     def checkClock(self):
-        print "It is %s %s in Year %s." \
-              % (str(gameTime.seasonFriendly()), str(self.day), \
-                 str(self.year))
+        return (str(gameTime.seasonFriendly()), str(self.day), str(self.year))
 
 
     #moves time forward! ^_^
@@ -57,4 +55,4 @@ class Time(object):
         elif self.season == Season.WINTER:
             return "Winter"
 
-gameTime = Time(15, 0, 1, Season.SPRING, 1)
+gameTime = Time(1, Season.SPRING, 1)

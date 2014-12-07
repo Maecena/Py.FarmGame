@@ -12,7 +12,8 @@ class ForestLocation(object):
         return random.choice(self.items)
 
 wild = ForestLocation([blueberry, blueberry, apple, \
-                       apple, vine, onion, ginger, strawberry, strawberry, mint])
+                       apple, vine, onion, ginger, strawberry, strawberry, mint, \
+                       brown_mushroom])
 bridge = ForestLocation([stone, shijemi, pebbles, \
                          pebbles, pebbles, vine, vine])
 hut = ForestLocation([twig, twig, shijemi, branch, \
