@@ -50,38 +50,37 @@ class Item(object):
         return self.type.sellable
 
 
-class Seed(object):
-    def __init__(self, name, growTime, stages, refreshStage, seasonGrown, crop):
+class Seeds(object):
+    def __init__(self, name, growTime, refreshTime, seasonGrown, crop):
         self.name = name
         self.growTime = growTime
-        self.refresh = refreshStage
-        self.stages = stages
+        self.refresh = refreshTime
         self.season = seasonGrown
         self.crop = crop
-        self.growStages = {
-            1: ("%s seed" % str(self.crop.name)),
-            2: ("baby %s" % str(self.crop.name)),
-            3: ("young %s" % str(self.crop.name)),
-            4: ("maturing %s" % str(self.crop.name)),
-            5: ("%s plant" % str(self.crop.name))
-            }
 
+
+    def getName(self):
+        return self.name
+    
     def harvestCrop(self):
         return self.crop
 
+    def getGrowTime(self):
+        return self.growTime
+
+    def growableCheck(self):
+        return self.season
+
+
 class seedPlot(object):
-    def __init__(self, seed, star=None):
-        self.seed = seed
+    def __init__(self, seeds, star=None):
+        self.seed = seeds
         self.star = star
         
     def upStar(self, num):
         self.star = num
 
-    def checkStage(self):
-        return False
-        
 
-        
 #later: if there isn't a way to use it it should be sellable
 # (self, name, sellable, buy, sell)
 #raw food  = ItemType("", True, 4, 2, ["edible"])
@@ -114,6 +113,6 @@ brick = ItemType("brick", True, 4, 2, [])
 pole = ItemType("pole", True, 5, 0, [])
 glass = ItemType("glass", True, 3, 0, [])
 
-#seeds = Seed("name", growTime, [stage lengths], refreshStage(slice#), ["seasonsGrown"])
-onion_seed = Seed("onion_seed", 7, {(1, 1), (2, 1), (3, 2), (4, 2), (5, 1)}, None, ["Summer"], onion)
-strawberry_seed = Seed("strawberry_seed", 9, {(1, 1), (2, 2), (3, 3), (4, 2), (5, 1)}, 3, ["Summer"], strawberry)
+#seeds = Seed("name", growTime, refreshTime, ["seasonsGrown"])
+onion_seed = Seeds("onion_seed", 5, None, ["Summer", "Fall"], onion)
+strawberry_seed = Seeds("strawberry_seed", 9, 3, ["Summer"], strawberry)
