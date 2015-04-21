@@ -16,7 +16,8 @@ class Season:
 
 ##@Singleton
 class Time(object):
-    def __init__(self, day, season, year):
+    def __init__(self, count, day, season, year):
+        self.count = count
         self.day = day
         self.season = season
         self.year = year
@@ -27,7 +28,7 @@ class Time(object):
 
     #moves time forward! ^_^
     def advanceDay(self):
-        self.count = 0
+        self.count += 1
         if self.day < 30:
             self.day += 1
         elif self.season < Season.WINTER:
@@ -42,7 +43,8 @@ class Time(object):
         print "It's a new day!"
         gameTime.checkClock()
         
-        
+    def checkCount(self):
+        return self.count
 
     #returns the season to be printed
     def seasonFriendly(self):
@@ -55,4 +57,4 @@ class Time(object):
         elif self.season == Season.WINTER:
             return "Winter"
 
-gameTime = Time(1, Season.SPRING, 1)
+gameTime = Time(0, 1, Season.SPRING, 1)

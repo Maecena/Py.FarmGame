@@ -42,6 +42,7 @@ class Field(object):
         for plot in self.plotList:
             if plot.seed not == None:
                 days = Seeds.getGrowTime(plot.seed)
+                return days
                 
         
     
