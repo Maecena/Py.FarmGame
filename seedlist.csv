@@ -1,41 +1,41 @@
-70001,60001,Onion Cutting,5,A Seed.,0,5,none,1,"('summer', 'fall') "
-70002,60002,Strawberry Seed,5,A Seed.,0,5,3,1,"('summer', 'fall') "
-70003,60003,Ginger Cutting,5,A Seed.,0,5,none,1,"('summer', 'fall') "
-70004,60004,Yam Cutting,5,A Seed.,0,5,3,1,"('summer', 'fall') "
-70005,60005,Potato Cutting,5,A Seed.,0,5,3,1,"('summer', 'fall') "
-70006,60006,Tomato Seed,5,A Seed.,0,5,3,1,"('summer', 'fall') "
-70007,60007,Grape Seed,5,A Seed.,0,5,3,1,"('summer', 'fall') "
-70008,60008,Coffee Seed,5,A Seed.,0,5,3,1,"('summer', 'fall') "
-70009,60009,Cocoa Seed,5,A Seed.,0,5,3,1,"('summer', 'fall') "
-70010,60010,Watermelon Seed,5,A Seed.,0,5,3,1,"('summer', 'fall') "
-70011,60011,Sugar Beet Seed,5,A Seed.,0,5,none,1,"('summer', 'fall') "
-70012,60012,Carrot Cutting,5,A Seed.,0,5,none,1,"('summer', 'fall') "
-70013,60013,Turnip Cutting,5,A Seed.,0,5,none,1,"('summer', 'fall') "
-70014,60014,Lettuce Seed,5,A Seed.,0,5,none,1,"('summer', 'fall') "
-70015,60015,Spinach Seed,5,A Seed.,0,5,none,1,"('summer', 'fall') "
-70016,60016,Pumpkin Seed,5,A Seed.,0,5,3,1,"('summer', 'fall') "
-70017,60017,Apple Seed,5,A Seed.,0,8,3,1,"('summer', 'fall') "
-70018,60018,Orange Seed,5,A Seed.,0,8,3,1,"('summer', 'fall') "
-70019,60019,Peach Seed,5,A Seed.,0,8,3,1,"('summer', 'fall') "
-70020,60020,Olive Seed,5,A Seed.,0,8,3,1,"('summer', 'fall') "
-70021,60021,Almond Seed,5,A Seed.,0,8,3,1,"('summer', 'fall') "
-70022,60022,Lemon Seed,5,A Seed.,0,8,3,1,"('summer', 'fall') "
-70023,60023,Tea Seed,5,A Seed.,0,8,3,1,"('summer', 'fall') "
-70024,60024,Cherry Seed,5,A Seed.,0,8,3,1,"('summer', 'fall') "
-70025,60025,Pear Seed,5,A Seed.,0,8,3,1,"('summer', 'fall') "
-70026,60026,Plum Seed,5,A Seed.,0,8,3,1,"('summer', 'fall') "
-70027,60027,Sorghum Seedling,5,A Seed.,0,12,none,1,"('summer', 'fall') "
-70028,60028,Wheat Seedling,5,A Seed.,0,12,none,1,"('summer', 'fall') "
-70029,60029,Rice Seedling,5,A Seed.,0,12,none,1,"('summer', 'fall') "
-70030,60030,Corn Seedling,5,A Seed.,0,12,none,1,"('summer', 'fall') "
-70031,60031,White Mushroom Pollen,5,A Seed.,0,7,3,1,"('summer', 'fall') "
-70032,60032,Brown Mushroom Pollen,5,A Seed.,0,7,3,1,"('summer', 'fall') "
-70033,60033,Shijemi Pollen,5,A Seed.,0,7,3,1,"('summer', 'fall') "
-70034,60034,Oyster Mushroom Pollen,5,A Seed.,0,7,3,1,"('summer', 'fall') "
-70035,60035,Peppermint Seed,5,A Seed.,0,2,none,3,"('summer', 'fall') "
-70036,60036,Basil Seed,5,A Seed.,0,2,none,3,"('summer', 'fall') "
-70037,60037,Parsley Seed,5,A Seed.,0,2,none,3,"('summer', 'fall') "
-70038,60038,Chive Seed,5,A Seed.,0,2,none,3,"('summer', 'fall') "
-70039,60039,Dill Seed,5,A Seed.,0,2,none,3,"('summer', 'fall') "
-70040,60040,Oregano Seed,5,A Seed.,0,2,none,3,"('summer', 'fall') "
-70041,60041,Thyme Seed,5,A Seed.,0,2,none,3,"('summer', 'fall') "
+70001;60001;Onion Cutting;5;A Seed.;0;5;none;1;('summer', 'fall', 'root', level = 1) 
+70002;60002;Strawberry Seed;5;A Seed.;0;5;3;1;('summer', 'spring', 'fruit', level = 1) 
+70003;60003;Ginger Cutting;5;A Seed.;0;5;none;1;('winter', 'fall', 'root', level = 30) 
+70004;60004;Yam Cutting;5;A Seed.;0;5;3;1;('summer', 'fall', 'root', level = 10) 
+70005;60005;Potato Cutting;5;A Seed.;0;5;none;1;('winter', 'fall', 'root', level = 1) 
+70006;60006;Tomato Seed;5;A Seed.;0;5;3;1;('spring', 'fruit', level = 1) 
+70007;60007;Grape Seed;5;A Seed.;0;5;3;1;('summer', 'fall', 'tree', level = 15) 
+70008;60008;Coffee Seed;5;A Seed.;0;5;3;1;('summer', 'bean', 'tree', level = 25) 
+70009;60009;Cocoa Seed;5;A Seed.;0;5;3;1;('summer', 'fall', 'tree', 'bean', level = 35) 
+70010;60010;Watermelon Seed;5;A Seed.;0;5;3;1;('summer', 'fall', 'fruit', level = 15) 
+70011;60011;Sugar Beet Seed;5;A Seed.;0;5;none;1;('summer', 'fall', 'root', level = 20) 
+70012;60012;Carrot Cutting;5;A Seed.;0;5;none;1;('fall', 'root', level = 5) 
+70013;60013;Turnip Cutting;5;A Seed.;0;5;none;1;('winter', 'fall', 'root', level = 3) 
+70014;60014;Lettuce Seed;5;A Seed.;0;5;none;1;('summer', level = 5) 
+70015;60015;Spinach Seed;5;A Seed.;0;5;none;1;('fall', level = 15) 
+70016;60016;Pumpkin Seed;5;A Seed.;0;5;3;1;('fall', level = 10) 
+70017;60017;Apple Seed;5;A Seed.;0;8;3;1;('summer', 'fall', 'tree', level = 1) 
+70018;60018;Orange Seed;5;A Seed.;0;8;3;1;('summer', 'tree', level = 7) 
+70019;60019;Peach Seed;5;A Seed.;0;8;3;1;('fall', 'tree', level = 5) 
+70020;60020;Olive Seed;5;A Seed.;0;8;3;1;('summer', 'fall', 'tree', level = 5) 
+70021;60021;Almond Seed;5;A Seed.;0;8;3;1;('summer', 'fall', 'tree', level = 35) 
+70022;60022;Lemon Seed;5;A Seed.;0;8;3;1;('summer', 'fall', 'tree', level = 5) 
+70023;60023;Tea Seed;5;A Seed.;0;8;3;1;('summer', 'fall', 'tree', level = 5) 
+70024;60024;Cherry Seed;5;A Seed.;0;8;3;1;('summer', 'fall', 'tree', level = 5) 
+70025;60025;Pear Seed;5;A Seed.;0;8;3;1;('summer', 'fall', 'tree', level = 5) 
+70026;60026;Plum Seed;5;A Seed.;0;8;3;1;('summer', 'fall', 'tree', level = 5) 
+70027;60027;Sorghum Seedling;5;A Seed.;0;12;none;1;('summer', 'fall', 'grain', level = 5) 
+70028;60028;Wheat Seedling;5;A Seed.;0;12;none;1;('summer', 'fall', 'grain', level = 5) 
+70029;60029;Rice Seedling;5;A Seed.;0;12;none;1;('summer', 'fall', 'grain', level = 5) 
+70030;60030;Corn Seedling;5;A Seed.;0;12;none;1;('summer', 'fall', 'grain', level = 5) 
+70031;60031;White Mushroom Pollen;5;A Seed.;0;7;3;1;('fall', 'mushroom', level = 5) 
+70032;60032;Brown Mushroom Pollen;5;A Seed.;0;7;3;1;('summer', 'mushroom', level = 5) 
+70033;60033;Shijemi Pollen;5;A Seed.;0;7;3;1;('spring', 'mushroom', level = 5) 
+70034;60034;Oyster Mushroom Pollen;5;A Seed.;0;7;3;1;('winter', 'mushroom', level = 5) 
+70035;60035;Peppermint Seed;5;A Seed.;0;2;none;3;('spring', 'herb', level = 15) 
+70036;60036;Basil Seed;5;A Seed.;0;2;none;3;('summer', level = 15) 
+70037;60037;Parsley Seed;5;A Seed.;0;2;none;3;('summer', level = 20) 
+70038;60038;Chive Seed;5;A Seed.;0;2;none;3;('spring', level = 25) 
+70039;60039;Dill Seed;5;A Seed.;0;2;none;3;('fall', level = 20) 
+70040;60040;Oregano Seed;5;A Seed.;0;2;none;3;('spring', level = 25) 
+70041;60041;Thyme Seed;5;A Seed.;0;2;none;3;('spring', level = 15) 

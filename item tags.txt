@@ -1,0 +1,5 @@
+Seeds, Crops
+seasons = (summer, fall, winter, spring)
+seed.types = (root, fruit, tree, bean, grain, mushroom)
+crop.types = (root, fruit, bean, leaf, vegetable, grain, mushroom, herb, nut)
+level = ##

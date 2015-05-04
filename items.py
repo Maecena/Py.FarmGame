@@ -1,17 +1,34 @@
 import csv
-
+import random
 #making the list to call things from
 #stored by item number, called like "print seedsList[number].visName"
-seedsList = {}
-cropsList = {}
+seedDict = {}
+cropDict = {}
+itemDict = {}
 
 class Items(object):
     def __init__(self, itemNumber, visName, basePrice, description, star, tags):
         self.number = itemNumber
         self.visName = visName
+        self.basePrice = basePrice
         self.description = description
         self.star = star
         self.tags = tags
+
+    def getVisName(self):
+        return self.visName
+
+    def getBasePrice(self):
+        return self.basePrice
+
+    def getDescription(self):
+        return self.description
+
+    def getStar(self):
+        return self.star
+
+    def getTags(self):
+        return self.tags
 
 class Crops(object):
     def __init__(self, cropNumber, visName, basePrice, description, star, tags):
@@ -21,6 +38,29 @@ class Crops(object):
         self.description = description
         self.star = star
         self.tags = tags
+        self.seed = 0
+
+#Overwrites the 0 to the seed object
+    def setSeed(self, seed):
+        self.seed = seed
+
+    def getVisName(self):
+        return self.visName
+
+    def getBasePrice(self):
+        return self.basePrice
+
+    def getDescription(self):
+        return self.description
+
+    def getStar(self):
+        return self.star
+
+    def getTags(self):
+        return self.tags
+
+    def getSeed(self):
+        return self.seed
 
 
 class Seeds(object):
@@ -36,32 +76,80 @@ class Seeds(object):
         self.production = production
         self.tags = tags
 
+#Overwrites the cropNumber to the crop object
     def setCrop(self, crop):
         self.crop = crop
-        crop.seed = self
+        Crops.setSeed(crop, self)
+
+    def getVisName(self):
+        return self.visName
+
+    def getCrop(self):
+        return self.crop
+
+    def getBasePrice(self):
+        return self.basePrice
+
+    def getDescription(self):
+        return self.description
+
+    def getStar(self):
+        return self.star
+
+    def getGrow(self):
+        return self.grow
+
+    def getRegrow(self):
+        return self.regrow
+
+    def getProduction(self):
+        return self.production
+
+    def getTags(self):
+        return self.tags
 
 
-#setting up cropsList
+#setting up itemDict
+def initializeItems():
+    csv.register_dialect('semi', delimiter=';')
+    with open('itemlist.csv', 'r') as f:
+        reader = csv.reader(f, dialect='semi')
+        for row in reader:
+            itemDict[row[0]] = Items(row[0], row[1], row[2], row[3], row[4], row[5])
+            
+#setting up cropDict
 def initializeCrops():
     csv.register_dialect('semi', delimiter=';')
     with open('croplist.csv', 'r') as f:
         reader = csv.reader(f, dialect='semi')
         for row in reader:
-            cropsList[row[0]] = Crops(row[0], row[1], row[2], row[3], row[4], row[5])
+            cropDict[row[0]] = Crops(row[0], row[1], row[2], row[3], row[4], row[5])
 
-
-#setting up seedsList
+#setting up seedDict
 def initializeSeeds():
-    f = open('seedlist.csv')
-    csv_f = csv.reader(f)
+    csv.register_dialect('semi', delimiter=';')
+    with open('seedlist.csv', 'r') as f:
+        reader = csv.reader(f, dialect='semi')
+        for row in reader:
+            seedDict[row[0]] = Seeds(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9])
 
-    for row in csv_f:
-        seedsList[row[0]] = Seeds(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9])
-        Seeds.setCrop(row[0], row[1])
+#goes through every seed in seedDict and changes the cropNumber in each Seeds object to the matching crop object, and adds seeds to each Crops object
+def integrateSeeds():
+    for seed in seedDict.values():
+        seedObject = seed
+        cropDictLookup = Seeds.getCrop(seedObject)
+        cropObject = cropDict[cropDictLookup]
+        Seeds.setCrop(seedObject, cropObject)
 
+##def testing():
+##    for crop in cropDict.values():
+##        x = Crops.getSeed(crop)
+##        print (str(Seeds.getVisName(x)) + str(Crops.getVisName(crop)))
 
-#def initializeItems():
     
 #when the page runs this populates the seed and crop dictionaries from the .csv files
-initializeCrops()
-initializeSeeds()
+def itemSetup():
+    initializeItems()
+    initializeCrops()
+    initializeSeeds()
+    integrateSeeds()

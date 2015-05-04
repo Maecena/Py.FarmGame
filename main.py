@@ -1,6 +1,10 @@
 import random
+import items as items
+
+
 
 def main():
+    items.itemSetup()
     runMainMenu()
 
 #Meg's menu system ^^
