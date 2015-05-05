@@ -5,6 +5,7 @@ import random
 seedDict = {}
 cropDict = {}
 itemDict = {}
+masterDict = {}    
 
 class Items(object):
     def __init__(self, itemNumber, visName, basePrice, description, star, tags):
@@ -14,6 +15,9 @@ class Items(object):
         self.description = description
         self.star = star
         self.tags = tags
+
+    def getNumber(self):
+        return self.number
 
     def getVisName(self):
         return self.visName
@@ -43,6 +47,9 @@ class Crops(object):
 #Overwrites the 0 to the seed object
     def setSeed(self, seed):
         self.seed = seed
+
+    def getNumber(self):
+        return self.number
 
     def getVisName(self):
         return self.visName
@@ -81,6 +88,9 @@ class Seeds(object):
         self.crop = crop
         Crops.setSeed(crop, self)
 
+    def getNumber(self):
+        return self.number
+
     def getVisName(self):
         return self.visName
 
@@ -108,6 +118,22 @@ class Seeds(object):
     def getTags(self):
         return self.tags
 
+#The big class, all items are in here
+class ItemMaster(object):
+    def __init__(self, thing, itemNumber, visName, basePrice, description, tags):
+        self.thing = thing
+        self.itemNumber = itemNumber
+        self.visName = visName
+        self.basePrice = basePrice
+        self.description = description
+        self.tags = tags
+
+    def getBaseItem(self):
+        return self.thing
+
+    def getVisName(self):
+        return self.visName
+        
 
 #setting up itemDict
 def initializeItems():
@@ -136,10 +162,18 @@ def initializeSeeds():
 #goes through every seed in seedDict and changes the cropNumber in each Seeds object to the matching crop object, and adds seeds to each Crops object
 def integrateSeeds():
     for seed in seedDict.values():
-        seedObject = seed
-        cropDictLookup = Seeds.getCrop(seedObject)
+        cropDictLookup = Seeds.getCrop(seed)
         cropObject = cropDict[cropDictLookup]
-        Seeds.setCrop(seedObject, cropObject)
+        Seeds.setCrop(seed, cropObject)
+
+#set up the masterDict
+def initializeMaster():
+    for seed in seedDict.values():
+        masterDict[Seeds.getNumber(seed)] = ItemMaster(seed, Seeds.getNumber(seed), Seeds.getVisName(seed), Seeds.getBasePrice(seed), Seeds.getDescription(seed), Seeds.getTags(seed))
+    for crop in cropDict.values():
+        masterDict[Crops.getNumber(crop)] = ItemMaster(crop, Crops.getNumber(crop), Crops.getVisName(crop), Crops.getBasePrice(crop), Crops.getDescription(crop), Crops.getTags(crop))
+    for item in itemDict.values():
+        masterDict[Items.getNumber(item)] = ItemMaster(item, Items.getNumber(item), Items.getVisName(item), Items.getBasePrice(item), Items.getDescription(item), Items.getTags(item))
 
 ##def testing():
 ##    for crop in cropDict.values():
@@ -153,3 +187,4 @@ def itemSetup():
     initializeCrops()
     initializeSeeds()
     integrateSeeds()
+    initializeMaster()
