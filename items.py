@@ -7,6 +7,27 @@ cropDict = {}
 itemDict = {}
 masterDict = {}    
 
+
+#The big class, all items are in here
+class ItemMaster(object):
+    def __init__(self, thing, itemNumber, visName, basePrice, description, tags):
+        self.thing = thing
+        self.itemNumber = itemNumber
+        self.visName = visName
+        self.basePrice = basePrice
+        self.description = description
+        self.tags = tags
+
+    def getNumber(self):
+        return self.itemNumber
+
+    def getBaseItem(self):
+        return self.thing
+
+    def getVisName(self):
+        return self.visName
+
+
 class Items(object):
     def __init__(self, itemNumber, visName, basePrice, description, star, tags):
         self.number = itemNumber
@@ -118,21 +139,6 @@ class Seeds(object):
     def getTags(self):
         return self.tags
 
-#The big class, all items are in here
-class ItemMaster(object):
-    def __init__(self, thing, itemNumber, visName, basePrice, description, tags):
-        self.thing = thing
-        self.itemNumber = itemNumber
-        self.visName = visName
-        self.basePrice = basePrice
-        self.description = description
-        self.tags = tags
-
-    def getBaseItem(self):
-        return self.thing
-
-    def getVisName(self):
-        return self.visName
         
 
 #setting up itemDict

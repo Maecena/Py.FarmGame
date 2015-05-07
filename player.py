@@ -43,12 +43,12 @@ class Player(object):
 # A special type of list that stores a player's inventory
 # Only store Items here otherwise bad stuff will happen
 class Inventory(list):
-    def add(self, item):
+    def addInv(self, item):
         self.append(item)
 
     # def remove(self, item) comes for free :)
 
-    def removeType(self, itemType, quantity=1):
+    def removeInv(self, itemType, quantity=1):
         removedQuantity = 0;
         for item in self:
             if item.name == itemType.name:
@@ -61,10 +61,10 @@ class Inventory(list):
         if removedQuantity < quantity:
             raise RuntimeError("Not enough %s to remove." % (itemType))
 
-    def containsType(self, itemType, quantity=1):
+    def invContains(self, itemType, quantity=1):
         foundQuantity = 0;
         for item in self:
-            if item.name == itemType.name:
+            if item.getNumber == ItemMaster.getNumber:
                 foundQuantity += 1
 
                 if foundQuantity == quantity:
@@ -95,8 +95,8 @@ class Inventory(list):
         print ""
 
 
-
-currentPlayer = Player(0, 15, 10, 0)
+#player init numbers are: experience, money, actions, actioncount
+currentPlayer = Player(0, 500, 10, 0)
 for i in range(5):
     currentPlayer.inventory.add(Item(bark))
 currentPlayer.inventory.add(Item(blueberry, 5)) # top quality blueberry
