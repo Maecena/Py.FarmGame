@@ -51,11 +51,8 @@ def runMainMenu():
 
         elif nextAction == "stats":
             #works fine
-            timePrint = clock.gameTime.checkClock()
-            print "It is %s %s in Year %s." \
-              % timePrint
-            statsPrint = currentPlayer.printStats()
-            print("Your money is at %s g, you are at level %s with %s experience and your inventory contains: ") % statsPrint
+            print (("It is %s %s in Year %s.") % clock.gameTime.checkClock())
+            print (("Your money is at %s g, you are at level %s with %s experience and your inventory contains: ") % currentPlayer.printStats())
             currentPlayer.inventory.printPretty()
             
             
@@ -85,35 +82,35 @@ def runForestMenu():
 
         if nextAction == "wild":
             item = forest.wild.search()
-            print "You found a %s!" % item.name
+            print ("You found a %s!" % item.name)
             currentPlayer.inventory.add(item)
             currentPlayer.addCount(1)
             currentPlayer.expGain(1)
 
         elif nextAction == "bridge":
             item = forest.bridge.search()
-            print "You found a %s!" % item.name
+            print ("You found a %s!" % item.name)
             currentPlayer.inventory.add(item)
             currentPlayer.addCount(1)
             currentPlayer.expGain(1)
 
         elif nextAction == "hut":
             item = forest.hut.search()
-            print "You found a %s!" % item.name
+            print ("You found a %s!" % item.name)
             currentPlayer.inventory.add(item)
             currentPlayer.addCount(1)
             currentPlayer.expGain(1)
 
         elif nextAction == "bog":
             item = forest.bog.search()
-            print "You found a %s!" % item.name
+            print ("You found a %s!" % item.name)
             currentPlayer.inventory.add(item)
             currentPlayer.addCount(1)
             currentPlayer.expGain(1)
 
         elif nextAction == "mine":
             item = forest.mine.search()
-            print "You found a %s!" % item.name
+            print ("You found a %s!" % item.name)
             currentPlayer.inventory.add(item)
             currentPlayer.addCount(1)
             currentPlayer.expGain(1)
@@ -164,11 +161,11 @@ def runCraftMenu():
 
 def runCraftCreatePrompt():
     print ("What do you want to craft?")
-    itemToCreate = raw_input(">")
+    itemToCreate = input(">")
     if itemToCreate in craft.recipes.keys():
         craft.recipes[itemToCreate].craft(currentPlayer.inventory)
     else:
-        print "Sorry that item doesn't exist."
+        print ("Sorry that item doesn't exist.")
     return
 
 
@@ -178,7 +175,7 @@ def displayMenuPrompt(options):
         for num, item in options.items():
             print (str(num) + " - " + item[0])
 
-        choice = raw_input(">")
+        choice = input(">")
 
         if not choice.isdigit():
             print ("Please pick a number from 1 to %d. \n" % len(options))

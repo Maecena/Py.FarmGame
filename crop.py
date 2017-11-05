@@ -30,7 +30,7 @@ class Field(object):
                 inventory.removeType(seed)
                 break
         if not seedAdded:
-            print "No room in this field for your crop!"
+            print ("No room in this field for your crop!")
 
     def __str__ (self):
         outStr=""

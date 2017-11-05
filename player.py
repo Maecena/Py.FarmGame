@@ -16,7 +16,7 @@ class Player(object):
         self.actionCount = actionCount
 
     def printStats(self):
-        return str(self.money), str(self.lvl), str(self.exp)
+        return (str(self.money), str(self.lvl), str(self.exp))
 
     def expGain(self, num=1):
         self.exp += num
@@ -33,6 +33,7 @@ class Player(object):
     def addCount(self, num):
         self.actionCount += num
         if self.actionCount >= self.actions:
+            self.actionCount = 0
             gameTime.advanceDay()
             
     #for lvling up, maybe also special foods?
@@ -77,21 +78,14 @@ class Inventory(list):
         return None
     
     def printSellable(self):
-        printedItems = []
         for item in self:
-            if item not in printedItems and item.sellable == True:
-                print "%s (%s g)" % (str(item), str(item.sellPrice()))
-
-        print ""
+            if Item.sellable(item) == True:
+                print (("%s (%s g)") % (str(Item.name(item)), str(Item.sellPrice(item))))
+        print ("")
 
     def printPretty(self):
-        itemDict = defaultdict(int)
-        for item in self:
-            itemDict[item.name] += 1
-
-        for name, quantity in itemDict.iteritems():
-            print "%s (%s)" % (name, quantity)
-        print ""
+        for x in self:
+            print (("%s") % (str(Item.__str__(x))))
 
 
 

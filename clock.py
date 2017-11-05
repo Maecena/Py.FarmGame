@@ -38,8 +38,8 @@ class Time(object):
             self.season = 1
             self.year += 1
             
-        print ""
-        print "It's a new day!"
+        print ("")
+        print ("It's a new day!")
         gameTime.checkClock()
         
         

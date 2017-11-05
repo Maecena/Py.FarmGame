@@ -31,23 +31,32 @@ class Item(object):
             self.star = random.randint(1,5)
 
     @property
-    def buyPrice(self):
+    def buyPriceProp(self):
         return self.type.baseBuy * self.star
 
+    def buyPrice(self):
+        return self.buyPriceProp
+
     @property
-    def sellPrice(self):
+    def sellPriceProp(self):
         return self.type.baseSell * self.star
 
+    def sellPrice(self):
+        return self.sellPriceProp
+
     @property
-    def name(self):
+    def nameProp(self):
         return self.type.name
 
-    def __str__(self):
-        return self.name
+    def name(self):
+        return self.nameProp
 
     @property
-    def sellable(self):
+    def sellableProp(self):
         return self.type.sellable
+
+    def sellable(self):
+        return self.sellableProp
 
 
 class Seeds(object):

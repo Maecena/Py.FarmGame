@@ -12,7 +12,7 @@ class Recipe(object):
         # Check that we can make the item
         for component, quantity in self.components.iteritems():
             if not inventory.containsType(component, quantity):
-                print "You need %s %s to make the %s." % (quantity, component, self.product)
+                print ("You need %s %s to make the %s." % (quantity, component, self.product))
                 return False
 
         # We have enough of everything, so remove the components and add the product item.
@@ -23,7 +23,7 @@ class Recipe(object):
         inventory.add(craftedItem)
         clock.gameTime.addCount(1)
         currentPlayer.expGain(4)
-        print "You made a beautiful %s-star %s." % (craftedItem.star, craftedItem)
+        print ("You made a beautiful %s-star %s." % (craftedItem.star, craftedItem))
 
 
 recipes = {
@@ -41,7 +41,7 @@ recipes = {
 def printRecipes():
     global recipes
     for recipe in recipes.values():
-        print "A %s can be made with:" % (recipe.product)
+        print ("A %s can be made with:" % (recipe.product))
         for component, quantity in recipe.components.iteritems():
-            print "(%s) %s" % (quantity, component.name)
-        print ""
+            print ("(%s) %s" % (quantity, component.name))
+        print ("")
