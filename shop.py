@@ -51,7 +51,7 @@ class Shop(object):
 
         player.money -= itemForSale.buyPrice
         player.inventory.add(itemForSale)
-        clock.gameTime.addCount(1)
+        currentPlayer.addCount(1)
         print ("You bought a shiny new %s for %s g." % (itemForSale, itemForSale.buyPrice))
         
 
@@ -78,5 +78,5 @@ class Shop(object):
         itemToSell = player.inventory.findType(itemType)
         player.inventory.remove(itemToSell)
         player.money += itemToSell.sellPrice
-        clock.gameTime.addCount(1)
+        currentPlayer.addCount(1)
         print ("You sold your %s for %s g." % (itemToSell, itemToSell.sellPrice))
